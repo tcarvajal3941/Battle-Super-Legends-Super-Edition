@@ -6,7 +6,7 @@ public class Character : MonoBehaviour
 //lets check
 
 {
-	public int characterHealth { get; set; }
+	public int health { get; set; }
 	public int specialBar { get; set; }
 	public float forwardSpeed { get; set; }
 	public float backwardSpeed { get; set; }
