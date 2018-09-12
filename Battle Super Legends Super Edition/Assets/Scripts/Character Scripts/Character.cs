@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour 
+//lets check
+
 {
 	public int characterHealth { get; set; }
 	public int specialBar { get; set; }
