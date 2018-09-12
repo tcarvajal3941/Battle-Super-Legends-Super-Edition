@@ -6,6 +6,10 @@ public class InputReader : MonoBehaviour {
 
 	public CharactersDatabase callCharactersDatabase = new CharactersDatabase();
 	public float fwalk;
+<<<<<<< HEAD
+=======
+	public float bwalk;
+>>>>>>> 20a6e0973b66dc94ab544f08fd73a5376f4ec9a9
 	public bool facingRight = true;
 	int inputDirection = 5;
 
@@ -26,7 +30,6 @@ public class InputReader : MonoBehaviour {
 
 			if (Input.GetKeyDown(KeyCode.A))
 			{
-				
 				inputDirection = 4;
 			}
 
@@ -38,7 +41,8 @@ public class InputReader : MonoBehaviour {
 
 			if (Input.GetKeyDown(KeyCode.D))
 			{
-				transform.Translate(Vector2.fwalk * Time.deltaTime);
+				fwalk = callCharactersDatabase.sonicPizzas.forwardSpeed;
+				transform.Translate(Vector2.left * fwalk * Time.deltaTime);
 				inputDirection = 6;
 			}
 
