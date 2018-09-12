@@ -9,10 +9,10 @@ public class CharactersDatabase : MonoBehaviour
 	void Start () 
 	{
 		//sonic pizzas
-		sonicPizzas.characterHealth = 100;
+		sonicPizzas.characterHealth = 13500;
 		sonicPizzas.specialBar = 0;
-		sonicPizzas.forwardSpeed = 10f;
-		sonicPizzas.backwardSpeed = 5f;
+		sonicPizzas.forwardSpeed = .75f;
+		sonicPizzas.backwardSpeed = .5f;
 		sonicPizzas.characterName = "Sonic Pizzas";
 	}
 }
