@@ -30,6 +30,8 @@ public class InputReader : MonoBehaviour {
 
 			if (Input.GetKeyDown(KeyCode.A))
 			{
+				bwalk = callCharactersDatabase.sonicPizzas.backwardSpeed;
+				transform.Translate(Vector2.right * bwalk * Time.deltaTime);
 				inputDirection = 4;
 			}
 
