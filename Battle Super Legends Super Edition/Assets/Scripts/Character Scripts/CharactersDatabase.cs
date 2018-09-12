@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharactersDatabase : MonoBehaviour 
 {
 	public Character sonicPizzas = new Character();
+	public Character manWithHat = new Character();
 
 	void Start () 
 	{
@@ -17,5 +18,9 @@ public class CharactersDatabase : MonoBehaviour
 
 		//man with hat
 		manWithHat.health = 12750;
+		manWithHat.specialBar = 0;
+		manWithHat.forwardSpeed = 10f;
+		manWithHat.backwardSpeed = 5f;
+		manWithHat.characterName = "Man with Hat";
 	}
 }

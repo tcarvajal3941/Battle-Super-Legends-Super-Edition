@@ -5,7 +5,8 @@ using UnityEngine;
 public class InputReader : MonoBehaviour {
 
 	public CharactersDatabase callCharactersDatabase = new CharactersDatabase();
-	public float fwalk = callCharactersDatabase.sonicPizzas.forwardSpeed;
+	public float fwalk;
+	public float bwalk;
 	public bool facingRight = true;
 	int inputDirection = 5;
 
@@ -26,7 +27,8 @@ public class InputReader : MonoBehaviour {
 
 			if (Input.GetKeyDown(KeyCode.A))
 			{
-				
+				bwalk = callCharactersDatabase.sonicPizzas.backwardSpeed;
+				transform.Translate(Vector2.right * bwalk * Time.deltaTime);
 				inputDirection = 4;
 			}
 
@@ -38,7 +40,8 @@ public class InputReader : MonoBehaviour {
 
 			if (Input.GetKeyDown(KeyCode.D))
 			{
-				transform.Translate(Vector2.fwalk * Time.deltaTime);
+				fwalk = callCharactersDatabase.sonicPizzas.forwardSpeed;
+				transform.Translate(Vector2.left * fwalk * Time.deltaTime);
 				inputDirection = 6;
 			}
 
