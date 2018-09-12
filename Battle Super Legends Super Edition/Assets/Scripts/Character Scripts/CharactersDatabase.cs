@@ -16,6 +16,5 @@ public class CharactersDatabase : MonoBehaviour
 		sonicPizzas.characterName = "Sonic Pizzas";
 
 		//man with hat
-		manWithHat.health = 12750;
 	}
 }

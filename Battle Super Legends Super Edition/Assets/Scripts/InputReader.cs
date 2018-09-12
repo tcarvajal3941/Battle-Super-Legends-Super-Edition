@@ -5,13 +5,13 @@ using UnityEngine;
 public class InputReader : MonoBehaviour {
 
 	public CharactersDatabase callCharactersDatabase = new CharactersDatabase();
-	public float fwalk = callCharactersDatabase.sonicPizzas.forwardSpeed;
+	public float fwalk;
 	public bool facingRight = true;
 	int inputDirection = 5;
 
 	// Use this for initialization
 	void Start () {
-		
+		fwalk = callCharactersDatabase.sonicPizzas.forwardSpeed;
 	}
 	
 	// Update is called once per frame
