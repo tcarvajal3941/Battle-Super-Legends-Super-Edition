@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour 
-//lets check
-
 {
-	public int characterHealth { get; set; }
+	public CharactersDatabase charactersDB = new CharactersDatabase();
+
+	public int health { get; set; }
 	public int specialBar { get; set; }
 	public float forwardSpeed { get; set; }
 	public float backwardSpeed { get; set; }
