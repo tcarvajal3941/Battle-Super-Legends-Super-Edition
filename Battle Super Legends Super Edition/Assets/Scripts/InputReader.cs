@@ -8,6 +8,7 @@ public class InputReader : MonoBehaviour {
 	public float fwalk;
 	public float bwalk;
 	public bool facingRight = true;
+	public bool grounded = true;
 	int inputDirection = 5;
 
 	// Use this for initialization
@@ -20,9 +21,11 @@ public class InputReader : MonoBehaviour {
 	void Update () {
 		if (facingRight == true)
 		{
-			if (Input.GetKeyDown(KeyCode.W))
+			
+
+			if (Input.GetKeyDown(KeyCode.W) && grounded == true)
 			{
-				
+				//jump
 				inputDirection = 8;
 			}
 
