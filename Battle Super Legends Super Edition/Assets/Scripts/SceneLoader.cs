@@ -6,12 +6,19 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour {
 
 	// Use this for initialization
-	void startCharacterSelect () {
+	public void startCharacterSelect () {
 		
 		SceneManager.LoadScene(1);
 	}
 
-	void startSettings(){
-		
+	public void startSettings(){
+		SceneManager.LoadScene(2);
+	}
+	public void startMapSelect(){
+
+	}
+
+	public void quitGame(){
+		Application.Quit();
 	}
 }
