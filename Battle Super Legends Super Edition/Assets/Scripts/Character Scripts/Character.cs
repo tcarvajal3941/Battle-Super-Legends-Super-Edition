@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Character : MonoBehaviour 
 {
-	public CharactersDatabase charactersDB = new CharactersDatabase();
-
 	public int health { get; set; }
 	public int specialBar { get; set; }
 	public float forwardSpeed { get; set; }
@@ -15,5 +13,6 @@ public class Character : MonoBehaviour
 	void Start () 
 	{
 		//check if any of the properties are null. If they are, throw a Debug.LogError
+		//move data here?
 	}	
 }
