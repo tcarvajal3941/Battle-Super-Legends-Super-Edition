@@ -41,6 +41,10 @@ public class InputReader : MonoBehaviour {
 				{
             		transform.position += Vector3.left * bwalk * Time.deltaTime;
 				}
+				else if (grounded == false && jumpDirection == 8)
+				{
+            		transform.position += Vector3.left * (bwalk * .5f) * Time.deltaTime;
+				}
         	}
 
 			//walk to the right
@@ -50,6 +54,10 @@ public class InputReader : MonoBehaviour {
 				if (grounded == true)
 				{
             		transform.position += Vector3.right * fwalk * Time.deltaTime;
+				}
+				if (grounded == false && jumpDirection == 8)
+				{
+            		transform.position += Vector3.right * (fwalk * .5f) * Time.deltaTime;
 				}
         	}
 
@@ -111,15 +119,16 @@ public class InputReader : MonoBehaviour {
 		}
 
 		//part of double jump, resets fall speed to jump height
-		if (resetGravity == true)
-		{
-			jumpHeight = setJumpHeight;
-			resetGravity = false;
-		}
+		
 
 		//part of jump, calculates gravity and horizontal momentum, DO NOT DELETE
 		if (grounded == false)
 		{
+			if (resetGravity == true)
+			{
+				jumpHeight = setJumpHeight;
+				resetGravity = false;
+			}
 			if (jumpDirection == 9)
 			{
 				transform.position += Vector3.right * (fwalk * .75f) * Time.deltaTime;
