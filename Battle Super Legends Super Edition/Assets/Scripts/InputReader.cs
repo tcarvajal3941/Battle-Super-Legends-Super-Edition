@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class InputReader : MonoBehaviour {
 
+	KeybindingsScript callKeybindingScript = new KeybindingsScript();
+
 	float fwalk; //pull from other scripts
 	float bwalk; //pull from other scripts
 	float jumpHeight; //pull from other scripts
@@ -34,7 +36,7 @@ public class InputReader : MonoBehaviour {
 		if (facingRight == true)
 		{
 			//walk to the left
-			if (Input.GetKey(KeyCode.LeftArrow))
+			if (Input.GetKey(callKeybindingScript.left))
         	{
 				inputDirection = 4;
 				if (grounded == true)
@@ -48,7 +50,7 @@ public class InputReader : MonoBehaviour {
         	}
 
 			//walk to the right
-        	if (Input.GetKey(KeyCode.RightArrow))
+        	if (Input.GetKey(callKeybindingScript.right))
         	{
 				inputDirection = 6;
 				if (grounded == true)
@@ -62,17 +64,17 @@ public class InputReader : MonoBehaviour {
         	}
 
 			//grounded jump
-			if (Input.GetKeyDown(KeyCode.UpArrow) && grounded == true)
+			if (Input.GetKeyDown(callKeybindingScript.jump) && grounded == true)
         	{
 				inputDirection = 8;
 				jumpDirection = 8;
-				if (Input.GetKey(KeyCode.UpArrow) && Input.GetKeyDown(KeyCode.LeftArrow))
+				if (Input.GetKey(callKeybindingScript.jump) && Input.GetKeyDown(callKeybindingScript.left))
 				{
 					transform.position += Vector3.left * (bwalk * .75f) * Time.deltaTime;
 					inputDirection = 7;
 					jumpDirection = 7;
 				}
-				if (Input.GetKey(KeyCode.UpArrow) && Input.GetKeyDown(KeyCode.RightArrow))
+				if (Input.GetKey(callKeybindingScript.jump) && Input.GetKeyDown(callKeybindingScript.right))
 				{
 					transform.position += Vector3.right * (fwalk * .75f) * Time.deltaTime;
 					inputDirection = 9;
@@ -83,18 +85,18 @@ public class InputReader : MonoBehaviour {
 			}
 
 			//double jump (broken as hell)
-			if (Input.GetKeyDown(KeyCode.UpArrow) && grounded == false && doubleJumps > 0)
+			if (Input.GetKeyDown(callKeybindingScript.jump) && grounded == false && doubleJumps > 0)
         	{
 				resetGravity = true;
 				inputDirection = 8;
 				jumpDirection = 8;
-				if (Input.GetKey(KeyCode.UpArrow) && Input.GetKeyDown(KeyCode.LeftArrow))
+				if (Input.GetKey(callKeybindingScript.jump) && Input.GetKeyDown(callKeybindingScript.left))
 				{
 					transform.position += Vector3.left * (bwalk * .75f) * Time.deltaTime;
 					inputDirection = 7;
 					jumpDirection = 7;
 				}
-				if (Input.GetKey(KeyCode.UpArrow) && Input.GetKeyDown(KeyCode.RightArrow))
+				if (Input.GetKey(callKeybindingScript.jump) && Input.GetKeyDown(callKeybindingScript.right))
 				{
 					transform.position += Vector3.right * (fwalk * .75f) * Time.deltaTime;
 					inputDirection = 9;
@@ -106,7 +108,7 @@ public class InputReader : MonoBehaviour {
 			}
 
 			//crouch
-        	if (Input.GetKey(KeyCode.DownArrow))
+        	if (Input.GetKey(callKeybindingScript.crouch))
         	{
 				inputDirection = 2;
         	}

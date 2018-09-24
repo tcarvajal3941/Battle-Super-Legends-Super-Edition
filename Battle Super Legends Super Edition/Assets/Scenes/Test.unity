@@ -241,8 +241,8 @@ GameObject:
   m_Component:
   - component: {fileID: 916824176}
   - component: {fileID: 916824178}
-  - component: {fileID: 916824177}
   - component: {fileID: 916824179}
+  - component: {fileID: 916824177}
   m_Layer: 0
   m_Name: trash
   m_TagString: Untagged
