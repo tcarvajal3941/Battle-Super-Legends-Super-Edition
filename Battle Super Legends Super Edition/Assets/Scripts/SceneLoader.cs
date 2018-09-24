@@ -18,6 +18,10 @@ public class SceneLoader : MonoBehaviour {
 
 	}
 
+	public void startKeyBindings(){
+		SceneManager.LoadScene(3);
+	}
+
 	public void quitGame(){
 		Application.Quit();
 	}
