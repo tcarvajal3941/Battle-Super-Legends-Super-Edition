@@ -33,6 +33,7 @@ public class InputReader : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		//start collecting inputs and movement directions
 		if (facingRight == true)
 		{
 			//walk to the left
@@ -111,26 +112,35 @@ public class InputReader : MonoBehaviour {
         	if (Input.GetKey(callKeybindingScript.crouch))
         	{
 				inputDirection = 2;
+				if (Input.GetKey(callKeybindingScript.crouch) && Input.GetKey(callKeybindingScript.left))
+				{
+					inputDirection = 1;
+				}
+				if (Input.GetKey(callKeybindingScript.crouch) && Input.GetKey(callKeybindingScript.right))
+				{
+					inputDirection = 3;
+				}
         	}
-
-			//return to idle
-			if (Input.GetKeyDown(KeyCode.None))
-			{
-				inputDirection = 5;
-			}
 		}
 
-		//part of double jump, resets fall speed to jump height
-		
+		//return to idle
+		if (Input.GetKeyDown(KeyCode.None))
+		{
+			inputDirection = 5;
+		}
+		//end of input and movement
+
 
 		//part of jump, calculates gravity and horizontal momentum, DO NOT DELETE
 		if (grounded == false)
 		{
+			//part of double jump, resets fall speed to jump height
 			if (resetGravity == true)
 			{
 				jumpHeight = setJumpHeight;
 				resetGravity = false;
 			}
+
 			if (jumpDirection == 9)
 			{
 				transform.position += Vector3.right * (fwalk * .75f) * Time.deltaTime;
