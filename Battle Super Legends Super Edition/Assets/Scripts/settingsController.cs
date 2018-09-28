@@ -11,10 +11,17 @@ public class settingsController : MonoBehaviour {
 	public AudioMixer musicAudioMixer;
 	public AudioMixer sfxAudioMixer;
 
+	public Slider masterSlider;
+	public Slider musicSlider;
+	public Slider sfxSlider;
+
 	Resolution[] resolutions;
 
 	public Dropdown resolutionDropdown;
 	void Start(){
+		masterSlider.value = PlayerPrefs.GetFloat("MasterSlider");
+		musicSlider.value = PlayerPrefs.GetFloat("MusicSlider");
+		sfxSlider.value = PlayerPrefs.GetFloat("SFXSlider");
 		resolutions = Screen.resolutions;
 
 		resolutionDropdown.ClearOptions();
@@ -34,6 +41,12 @@ public class settingsController : MonoBehaviour {
 		resolutionDropdown.AddOptions(options);
 		resolutionDropdown.value = currentResolutionIndex;
 		resolutionDropdown.RefreshShownValue();
+	}
+
+	void Update(){
+		PlayerPrefs.SetFloat("MasterSlider", masterSlider.value);
+		PlayerPrefs.SetFloat("MusicSlider", musicSlider.value);
+		PlayerPrefs.SetFloat("SFXSlider", sfxSlider.value);
 	}
 
 	public void SetResolution (int resolutionIndex){

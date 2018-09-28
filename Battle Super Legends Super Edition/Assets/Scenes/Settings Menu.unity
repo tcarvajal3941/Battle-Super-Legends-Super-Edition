@@ -401,7 +401,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 125
+  orthographic size: 200
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -424,7 +424,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 130438718}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 570.11, y: 210, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -475,7 +475,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -118.38}
+  m_AnchoredPosition: {x: 0, y: -120}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &243899190
@@ -3473,6 +3473,9 @@ MonoBehaviour:
   masterAudioMixer: {fileID: 24100000, guid: 2d34039792df1bc4db6a63c4fcd6a38c, type: 2}
   musicAudioMixer: {fileID: 24100000, guid: 90542d2e5f26f8245845118ec10dedbe, type: 2}
   sfxAudioMixer: {fileID: 24100000, guid: faf79918185c23043ae5af980ad2dfbc, type: 2}
+  masterSlider: {fileID: 2106940437}
+  musicSlider: {fileID: 1784214794}
+  sfxSlider: {fileID: 1773754379}
   resolutionDropdown: {fileID: 2065658632}
 --- !u!114 &1946050238
 MonoBehaviour:
@@ -3485,6 +3488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb2d04869f896b9468f0e3ce92f2efe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panel: {fileID: 0}
 --- !u!1 &1994448002
 GameObject:
   m_ObjectHideFlags: 0
@@ -3586,10 +3590,10 @@ RectTransform:
   m_Father: {fileID: 1873550398}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -71.19}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -70}
+  m_SizeDelta: {x: -2064, y: -952}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1999087065
 MonoBehaviour:
