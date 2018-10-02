@@ -50,7 +50,6 @@ public class ChangeKeyBinds : MonoBehaviour {
 	
 	// Update is called once per frame
 	public void resetDefaults(){
-		Debug.Log("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
 
 		KeybindingsScript.Kb.jump = KeyCode.W;
 		PlayerPrefs.SetString("jumpkey", KeybindingsScript.Kb.jump.ToString());
