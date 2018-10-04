@@ -11,12 +11,37 @@ public class settingsController : MonoBehaviour {
 	public AudioMixer musicAudioMixer;
 	public AudioMixer sfxAudioMixer;
 
+	public Slider masterSlider;
+	public Slider musicSlider;
+	public Slider sfxSlider;
+
 	Resolution[] resolutions;
 
 	public Dropdown resolutionDropdown;
+
+
+	public Toggle FullScreenToggle;
+
+	public Resolution resolution;
+
+
 	void Start(){
+		
+		if(PlayerPrefs.GetInt("FullScreenToggle") == 1){
+			FullScreenToggle.isOn = true;
+		} else {
+			FullScreenToggle.isOn = false;
+		}
+
+		masterSlider.value = PlayerPrefs.GetFloat("MasterSlider");
+		musicSlider.value = PlayerPrefs.GetFloat("MusicSlider");
+		sfxSlider.value = PlayerPrefs.GetFloat("SFXSlider");
+		resolution.width = PlayerPrefs.GetInt("ResolutionWidth");
+		resolution.height = PlayerPrefs.GetInt("ResolutionHeight");
+		Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
 		resolutions = Screen.resolutions;
 
+		
 		resolutionDropdown.ClearOptions();
 
 		List<string> options = new List<string>();
@@ -36,9 +61,23 @@ public class settingsController : MonoBehaviour {
 		resolutionDropdown.RefreshShownValue();
 	}
 
-	public void SetResolution (int resolutionIndex){
+	void Update(){
+		PlayerPrefs.SetFloat("MasterSlider", masterSlider.value);
+		PlayerPrefs.SetFloat("MusicSlider", musicSlider.value);
+		PlayerPrefs.SetFloat("SFXSlider", sfxSlider.value);
 		
-		Resolution resolution = resolutions[resolutionIndex];
+		if(FullScreenToggle.isOn == true){
+			PlayerPrefs.SetInt("FullScreenToggle", 1);
+		} else {
+			PlayerPrefs.SetInt("FullScreenToggle", 0);
+		}
+		
+	}
+
+	public void SetResolution (int resolutionIndex){
+		resolution = resolutions[resolutionIndex];
+		PlayerPrefs.SetInt("ResolutionHeight", resolution.height);
+		PlayerPrefs.SetInt("ResolutionWidth", resolution.width);
 		Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
 	}
 
