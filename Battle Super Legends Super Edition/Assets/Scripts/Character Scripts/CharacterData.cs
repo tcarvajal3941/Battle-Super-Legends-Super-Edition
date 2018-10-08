@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +12,7 @@ public class CharacterData{
 		public float gravity = .75f;
 
 		float[] fiveLData = new float[3];
-		fiveLData[0] = 5;
+//		fiveLData[0] = 5;
 	}
 
 	// Use this for initialization
@@ -20,3 +20,4 @@ public class CharacterData{
 		
 	}
 }
+*/

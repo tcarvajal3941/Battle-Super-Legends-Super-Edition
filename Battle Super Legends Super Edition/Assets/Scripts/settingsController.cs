@@ -26,6 +26,13 @@ public class settingsController : MonoBehaviour {
 
 
 	void Start(){
+		if(PlayerPrefs.GetInt("ResolutionsWidth") == null || PlayerPrefs.GetInt("ResolutionsWidth") == 0){
+			PlayerPrefs.SetInt("ResolutionWidth", 1920);
+		}
+		if(PlayerPrefs.GetInt("Resolutionsheight") == null || PlayerPrefs.GetInt("Resolutionsheight") == 0){
+			PlayerPrefs.SetInt("ResolutionWidth", 1080);
+		}
+
 		resolution.width = PlayerPrefs.GetInt("ResolutionWidth");
 		resolution.height = PlayerPrefs.GetInt("ResolutionHeight");
 		
@@ -50,9 +57,10 @@ public class settingsController : MonoBehaviour {
 
 		int currentResolutionIndex = 0;
 		string option;
-		//Debug.Log(PlayerPrefs.GetInt("ResolutionWidth"))
+		Debug.Log(PlayerPrefs.GetInt("ResolutionWidth"));
+		Debug.Log(PlayerPrefs.GetInt("ResolutionHeight"));
 		for(int i = 0; i < resolutions.Length; i++){
-					Debug.Log(i + " resolutions " + resolutions[i]);
+					//Debug.Log(i + " resolutions " + resolutions[i]);
 					option = resolutions[i].width + " x " + resolutions[i].height;
 					options.Add(option);
 
@@ -78,7 +86,7 @@ public class settingsController : MonoBehaviour {
 	}
 
 	public void SetResolution (int resolutionIndex){
-		Debug.Log("Resolutions Index: " + resolutionIndex);
+	//	Debug.Log("Resolutions Index: " + resolutionIndex);
 		resolution = resolutions[resolutionIndex];
 		PlayerPrefs.SetInt("ResolutionHeight", resolution.height);
 		PlayerPrefs.SetInt("ResolutionWidth", resolution.width);
