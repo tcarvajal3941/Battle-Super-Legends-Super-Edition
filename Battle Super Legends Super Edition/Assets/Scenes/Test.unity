@@ -229,6 +229,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1983257033493056, guid: 4893aef3717d01240ab29eda530eee1f, type: 2}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4893aef3717d01240ab29eda530eee1f, type: 2}
   m_IsPrefabAsset: 0
@@ -242,6 +246,7 @@ GameObject:
   - component: {fileID: 916824176}
   - component: {fileID: 916824178}
   - component: {fileID: 916824179}
+  - component: {fileID: 916824180}
   - component: {fileID: 916824177}
   m_Layer: 0
   m_Name: trash
@@ -271,7 +276,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 916824175}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc45fa73e72659e42b7ba273bad01c92, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a4529d72ba7b5844a47887aeffdd041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &916824178
@@ -337,6 +342,18 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &916824180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 916824175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b12af7aac41bce34381ce54646062457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputDirection: 0
 --- !u!4 &1758452314 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4970241412379758, guid: 4893aef3717d01240ab29eda530eee1f,
