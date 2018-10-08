@@ -26,19 +26,21 @@ public class settingsController : MonoBehaviour {
 
 
 	void Start(){
+		resolution.width = PlayerPrefs.GetInt("ResolutionWidth");
+		resolution.height = PlayerPrefs.GetInt("ResolutionHeight");
 		
 		if(PlayerPrefs.GetInt("FullScreenToggle") == 1){
 			FullScreenToggle.isOn = true;
+			Screen.SetResolution(resolution.width, resolution.height, true);
 		} else {
 			FullScreenToggle.isOn = false;
+			Screen.SetResolution(resolution.width, resolution.height, false);
 		}
 
 		masterSlider.value = PlayerPrefs.GetFloat("MasterSlider");
 		musicSlider.value = PlayerPrefs.GetFloat("MusicSlider");
 		sfxSlider.value = PlayerPrefs.GetFloat("SFXSlider");
-		resolution.width = PlayerPrefs.GetInt("ResolutionWidth");
-		resolution.height = PlayerPrefs.GetInt("ResolutionHeight");
-		Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+		
 		resolutions = Screen.resolutions;
 
 		
@@ -47,15 +49,17 @@ public class settingsController : MonoBehaviour {
 		List<string> options = new List<string>();
 
 		int currentResolutionIndex = 0;
+		string option;
+		//Debug.Log(PlayerPrefs.GetInt("ResolutionWidth"))
 		for(int i = 0; i < resolutions.Length; i++){
-			string option = resolutions[i].width + " x " + resolutions[i].height;
-			options.Add(option);
+					Debug.Log(i + " resolutions " + resolutions[i]);
+					option = resolutions[i].width + " x " + resolutions[i].height;
+					options.Add(option);
 
-			if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height){
-				currentResolutionIndex = i;
+			if (resolutions[i].width == PlayerPrefs.GetInt("ResolutionWidth") && resolutions[i].height == PlayerPrefs.GetInt("ResolutionHeight")){
+				currentResolutionIndex = i; 
 			}
 		}
-
 		resolutionDropdown.AddOptions(options);
 		resolutionDropdown.value = currentResolutionIndex;
 		resolutionDropdown.RefreshShownValue();
@@ -65,7 +69,6 @@ public class settingsController : MonoBehaviour {
 		PlayerPrefs.SetFloat("MasterSlider", masterSlider.value);
 		PlayerPrefs.SetFloat("MusicSlider", musicSlider.value);
 		PlayerPrefs.SetFloat("SFXSlider", sfxSlider.value);
-		
 		if(FullScreenToggle.isOn == true){
 			PlayerPrefs.SetInt("FullScreenToggle", 1);
 		} else {
@@ -75,10 +78,20 @@ public class settingsController : MonoBehaviour {
 	}
 
 	public void SetResolution (int resolutionIndex){
+		Debug.Log("Resolutions Index: " + resolutionIndex);
 		resolution = resolutions[resolutionIndex];
 		PlayerPrefs.SetInt("ResolutionHeight", resolution.height);
 		PlayerPrefs.SetInt("ResolutionWidth", resolution.width);
-		Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+
+
+		if(PlayerPrefs.GetInt("FullScreenToggle") == 1){
+			FullScreenToggle.isOn = true;
+			Screen.SetResolution(resolution.width, resolution.height, true);
+		} else {
+			FullScreenToggle.isOn = false;
+			Screen.SetResolution(resolution.width, resolution.height, false);
+		}
+		
 	}
 
 	public void setMasterVolume(float volume){
