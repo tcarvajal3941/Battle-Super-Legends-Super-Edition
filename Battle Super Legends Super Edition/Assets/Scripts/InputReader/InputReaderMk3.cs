@@ -135,22 +135,30 @@ public class InputReaderMk3 : MonoBehaviour {
 		{
 			if (grounded == true)
 			{
-            	transform.position += Vector2.x * lspeed * Time.deltaTime;
+				Vector2 tempVec = transform.position;
+				tempVec.x += transform.position.x * lspeed * Time.deltaTime;
+            	transform.position = tempVec;
 			}
 			else if (grounded == false && jumpDirection == 8)
 			{
-            	transform.position += Vector2.x * (lspeed * .5f) * Time.deltaTime;
+            	Vector2 tempVec = transform.position;
+				tempVec.x += transform.position.x * (lspeed * .5f) * Time.deltaTime;
+            	transform.position = tempVec;
 			}
 		}
 			if (inputDirection == 6)
 			{
 				if (grounded == true)
 				{
-            		transform.position += Vector2.x * rspeed * Time.deltaTime;
+            		Vector2 tempVec = transform.position;
+					tempVec.x += transform.position.x * rspeed * Time.deltaTime;
+            		transform.position = tempVec;
 				}
 				if (grounded == false && jumpDirection == 8)
 				{
-            		transform.position += Vector2.x * (rspeed * .5f) * Time.deltaTime;
+            		Vector2 tempVec = transform.position;
+					tempVec.x += transform.position.x * (rspeed * .5f) * Time.deltaTime;
+            		transform.position = tempVec;
 				}
 			}
 
@@ -158,24 +166,33 @@ public class InputReaderMk3 : MonoBehaviour {
 			if (inputDirection == 7)
 			{
 				jumpDirection = 7;
-				transform.position += Vector2.x * (lspeed * .85f) * Time.deltaTime;
 
-				transform.position += Vector2.y * jumpHeight * Time.deltaTime;
+				Vector2 tempVec = transform.position;
+				tempVec.x += transform.position.x * (lspeed * .85f) * Time.deltaTime;
+				tempVec.y += transform.position.y * jumpHeight * Time.deltaTime;
+            	transform.position = tempVec;
+
 				grounded = false;
 			}
 			if (inputDirection == 8)
 			{
 				jumpDirection = 8;
 
-				transform.position += Vector2.y * jumpHeight * Time.deltaTime;
+				Vector2 tempVec = transform.position;
+				tempVec.y += transform.position.y * jumpHeight * Time.deltaTime;
+            	transform.position = tempVec;
+
 				grounded = false;
 			}
 			if (inputDirection == 9)
 			{
 				jumpDirection = 9;
-				transform.position += Vector2.x * (rspeed * .85f) * Time.deltaTime;
+				
+				Vector2 tempVec = transform.position;
+				tempVec.x += transform.position.x * (rspeed * .85f) * Time.deltaTime;
+				tempVec.y += transform.position.y * jumpHeight * Time.deltaTime;
+            	transform.position = tempVec;
 
-				transform.position += Vector2.y * jumpHeight * Time.deltaTime;
 				grounded = false;
 			}
 
@@ -198,14 +215,20 @@ public class InputReaderMk3 : MonoBehaviour {
 			
 				if (jumpDirection == 9)
 				{
-					transform.position += Vector2.x * (rspeed * .85f) * Time.deltaTime;
+					Vector2 tempVecII = transform.position;
+					tempVecII.x += transform.position.x * (rspeed * .85f) * Time.deltaTime;
+            		transform.position = tempVecII;
 				}
 				if (jumpDirection == 7)
 				{
-					transform.position += Vector2.x * (lspeed * .85f) * Time.deltaTime;
+					Vector2 tempVecII = transform.position;
+					tempVecII.x += transform.position.x * (lspeed * .85f) * Time.deltaTime;
+            		transform.position = tempVecII;
 				}
 
-			transform.position += Vector2.y * jumpHeight * Time.deltaTime;
+			Vector2 tempVec = transform.position;
+			tempVec.y += transform.position.y * jumpHeight * Time.deltaTime;
+            transform.position = tempVec;
 			jumpHeight -= gravity;
 		}
 

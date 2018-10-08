@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputReaderMk2 : MonoBehaviour {
 
-	KeybindingsScript callKeybindingScript = new KeybindingsScript();
+	//KeybindingsScript callKeybindingScript = new KeybindingsScript();
 
 	float fwalk; //pull from other scripts
 	float bwalk; //pull from other scripts
