@@ -11,7 +11,7 @@ public class InputReader : MonoBehaviour {
 	float jumpHeight; //pull from other scripts
 	float setJumpHeight = 15; //pull from other scripts
 	float gravity;
-	int inputDirection;
+	public int inputDirection;
 	int jumpDirection;
 	int setDoubleJumps = 1; //pull from other scripts
 	int doubleJumps;

@@ -26,7 +26,7 @@ public class MoveScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		int playerInputDirection;
-		playerInputDirection = InputReader.inputDirection;
+	//	playerInputDirection = InputReader.inputDirection;
 		
 	}
 }
