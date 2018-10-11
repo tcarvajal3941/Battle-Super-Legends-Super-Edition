@@ -26,24 +26,28 @@ public class settingsController : MonoBehaviour {
 
 
 	void Start(){
+		masterSlider.value = PlayerPrefs.GetFloat("MasterSlider");
+		musicSlider.value = PlayerPrefs.GetFloat("MusicSlider");
+		sfxSlider.value = PlayerPrefs.GetFloat("SFXSlider");
+
+		resolution.width = PlayerPrefs.GetInt("ResolutionWidth" , 1920);
+		resolution.height = PlayerPrefs.GetInt("ResolutionHeight" , 1080);
+
+		
+		if(PlayerPrefs.GetInt("FullScreenToggle") == 1){
+			FullScreenToggle.isOn = true;
+			Screen.SetResolution(resolution.width, resolution.height, true);
+		} else {
+			FullScreenToggle.isOn = false;
+			Screen.SetResolution(resolution.width, resolution.height, false);
+			}
+		
+
+			
 		dropDownFiller();
 	}
 
 	void dropDownFiller(){
-				resolution.width = PlayerPrefs.GetInt("ResolutionWidth");
-				resolution.height = PlayerPrefs.GetInt("ResolutionHeight");
-				
-				if(PlayerPrefs.GetInt("FullScreenToggle") == 1){
-					FullScreenToggle.isOn = true;
-					Screen.SetResolution(resolution.width, resolution.height, true);
-				} else {
-					FullScreenToggle.isOn = false;
-					Screen.SetResolution(resolution.width, resolution.height, false);
-				}
-
-				masterSlider.value = PlayerPrefs.GetFloat("MasterSlider");
-				musicSlider.value = PlayerPrefs.GetFloat("MusicSlider");
-				sfxSlider.value = PlayerPrefs.GetFloat("SFXSlider");
 				
 				resolutions = Screen.resolutions;
 
@@ -54,8 +58,7 @@ public class settingsController : MonoBehaviour {
 
 				int currentResolutionIndex = 0;
 				string option;
-				Debug.Log(PlayerPrefs.GetInt("ResolutionWidth"));
-				Debug.Log(PlayerPrefs.GetInt("ResolutionHeight"));
+
 				for(int i = 0; i < resolutions.Length; i++){
 							//Debug.Log(i + " resolutions " + resolutions[i]);
 							option = resolutions[i].width + " x " + resolutions[i].height;
