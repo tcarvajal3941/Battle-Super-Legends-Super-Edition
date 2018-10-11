@@ -24,38 +24,39 @@ public class settingsController : MonoBehaviour {
 
 	public Resolution resolution;
 
+	List<string> options = new List<string>();
 
 	void Start(){
+		masterSlider.value = PlayerPrefs.GetFloat("MasterSlider");
+		musicSlider.value = PlayerPrefs.GetFloat("MusicSlider");
+		sfxSlider.value = PlayerPrefs.GetFloat("SFXSlider");
+
+		resolution.width = PlayerPrefs.GetInt("ResolutionWidth" , 1920);
+		resolution.height = PlayerPrefs.GetInt("ResolutionHeight" , 1080);
+
+		
+		if(PlayerPrefs.GetInt("FullScreenToggle" , 1) == 1){
+			FullScreenToggle.isOn = true;
+			Screen.SetResolution(resolution.width, resolution.height, true);
+		} else {
+			FullScreenToggle.isOn = false;
+			Screen.SetResolution(resolution.width, resolution.height, false);
+			}
 		dropDownFiller();
 	}
 
 	void dropDownFiller(){
-				resolution.width = PlayerPrefs.GetInt("ResolutionWidth");
-				resolution.height = PlayerPrefs.GetInt("ResolutionHeight");
-				
-				if(PlayerPrefs.GetInt("FullScreenToggle") == 1){
-					FullScreenToggle.isOn = true;
-					Screen.SetResolution(resolution.width, resolution.height, true);
-				} else {
-					FullScreenToggle.isOn = false;
-					Screen.SetResolution(resolution.width, resolution.height, false);
-				}
-
-				masterSlider.value = PlayerPrefs.GetFloat("MasterSlider");
-				musicSlider.value = PlayerPrefs.GetFloat("MusicSlider");
-				sfxSlider.value = PlayerPrefs.GetFloat("SFXSlider");
 				
 				resolutions = Screen.resolutions;
 
 				
 				resolutionDropdown.ClearOptions();
 
-				List<string> options = new List<string>();
+				
 
 				int currentResolutionIndex = 0;
 				string option;
-				Debug.Log(PlayerPrefs.GetInt("ResolutionWidth"));
-				Debug.Log(PlayerPrefs.GetInt("ResolutionHeight"));
+
 				for(int i = 0; i < resolutions.Length; i++){
 							//Debug.Log(i + " resolutions " + resolutions[i]);
 							option = resolutions[i].width + " x " + resolutions[i].height;
@@ -65,9 +66,26 @@ public class settingsController : MonoBehaviour {
 						currentResolutionIndex = i; 
 					}
 				}
+				checkDuplicates();
+				checkDuplicates();
 				resolutionDropdown.AddOptions(options);
 				resolutionDropdown.value = currentResolutionIndex;
 				resolutionDropdown.RefreshShownValue();
+	}
+
+	void checkDuplicates(){
+		for(int k = 0; k < options.Count; k++){
+			if(options[k].Equals("1360 x 768")){
+				options.RemoveAt(k);
+			}
+		}
+		for(int i = 0; i < options.Count - 1; i++){
+			for(int j = i + 1; j < options.Count; j++){
+				if(options[i] == options[j]){
+					options.RemoveAt(j);
+				}
+			}
+		}
 	}
 	void Update(){
 		PlayerPrefs.SetFloat("MasterSlider", masterSlider.value);
@@ -82,8 +100,11 @@ public class settingsController : MonoBehaviour {
 	}
 
 	public void SetResolution (int resolutionIndex){
-	//	Debug.Log("Resolutions Index: " + resolutionIndex);
-		resolution = resolutions[resolutionIndex];
+		Debug.Log(System.Convert.ToInt32(options[resolutionIndex].Substring(0 , 4)));
+		Debug.Log(System.Convert.ToInt32(options[resolutionIndex].Substring(7)));
+
+		resolution.width = System.Convert.ToInt32(options[resolutionIndex].Substring(0 , 4));
+		resolution.height = System.Convert.ToInt32(options[resolutionIndex].Substring(7));
 		PlayerPrefs.SetInt("ResolutionHeight", resolution.height);
 		PlayerPrefs.SetInt("ResolutionWidth", resolution.width);
 
