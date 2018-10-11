@@ -24,6 +24,7 @@ public class settingsController : MonoBehaviour {
 
 	public Resolution resolution;
 
+	List<string> options = new List<string>();
 
 	void Start(){
 		masterSlider.value = PlayerPrefs.GetFloat("MasterSlider");
@@ -51,7 +52,7 @@ public class settingsController : MonoBehaviour {
 				
 				resolutionDropdown.ClearOptions();
 
-				List<string> options = new List<string>();
+				
 
 				int currentResolutionIndex = 0;
 				string option;
@@ -65,21 +66,26 @@ public class settingsController : MonoBehaviour {
 						currentResolutionIndex = i; 
 					}
 				}
-				options = checkDuplicates(options);
+				checkDuplicates();
+				checkDuplicates();
 				resolutionDropdown.AddOptions(options);
 				resolutionDropdown.value = currentResolutionIndex;
 				resolutionDropdown.RefreshShownValue();
 	}
 
-	List<string> checkDuplicates(List<string> options){
-		for(int i = 0; i < options.Count -1; i++){
+	void checkDuplicates(){
+		for(int k = 0; k < options.Count; k++){
+			if(options[k].Equals("1280 x 800") || options[k].Equals("1360 x 768")){
+				options.RemoveAt(k);
+			}
+		}
+		for(int i = 0; i < options.Count - 1; i++){
 			for(int j = i + 1; j < options.Count; j++){
 				if(options[i] == options[j]){
 					options.RemoveAt(j);
 				}
 			}
 		}
-		return options;
 	}
 	void Update(){
 		PlayerPrefs.SetFloat("MasterSlider", masterSlider.value);
@@ -94,8 +100,11 @@ public class settingsController : MonoBehaviour {
 	}
 
 	public void SetResolution (int resolutionIndex){
-	//	Debug.Log("Resolutions Index: " + resolutionIndex);
-		resolution = resolutions[resolutionIndex];
+		Debug.Log(System.Convert.ToInt32(options[resolutionIndex].Substring(0 , 4)));
+		Debug.Log(System.Convert.ToInt32(options[resolutionIndex].Substring(7)));
+
+		resolution.width = System.Convert.ToInt32(options[resolutionIndex].Substring(0 , 4));
+		resolution.height = System.Convert.ToInt32(options[resolutionIndex].Substring(7));
 		PlayerPrefs.SetInt("ResolutionHeight", resolution.height);
 		PlayerPrefs.SetInt("ResolutionWidth", resolution.width);
 
