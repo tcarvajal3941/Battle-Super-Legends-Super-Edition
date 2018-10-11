@@ -123,15 +123,11 @@ public class InputReaderMk2 : MonoBehaviour {
 		{
 			lspeed = bwalk;
 			rspeed = fwalk;
-			string fdir = "right";
-			string bdir = "left";
 		}
 		if (facingRight == false)
 		{
 			lspeed = fwalk;
 			rspeed = bwalk;
-			string fdir = "left";
-			string bdir = "right";
 		}
 
 		//left/right movement

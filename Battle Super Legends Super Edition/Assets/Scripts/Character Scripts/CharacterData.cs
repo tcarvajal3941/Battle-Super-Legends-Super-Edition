@@ -1,23 +1,33 @@
-﻿/*using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterData{
 
-	public class SonicPizzas
-	{
-		public float fwalk = 3;
-		public float bwalk = 2;
-		public int jumpHeight = 15;
-		public float gravity = .75f;
+	string character = "SonicPizzas";
+	string calledMove = "5L";
 
-		float[] fiveLData = new float[3];
-//		fiveLData[0] = 5;
-	}
+	public float fwalk;
+	public float bwalk;
+	public int jumpHeight;
+	public int doubleJumps;
+	public float gravity;
 
 	// Use this for initialization
 	void Start () {
-		
+		if (character == "SonicPizzas")
+		{
+			fwalk = 3;
+			bwalk = 2;
+			jumpHeight = 15;
+			doubleJumps = 1;
+			gravity = .75f;
+			
+			if (calledMove == "5L")
+			{
+				
+			}
+
+		}
 	}
 }
-*/

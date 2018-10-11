@@ -17,9 +17,9 @@ public class HitstunData : MonoBehaviour {
 		hitstunData[0, 6] = 12;//air untech
 		hitstunData[0, 7] = 23;//ch air untech
 		hitstunData[0, 8] = 9;//blockstun
-		hitstunData[0, 9] = 11;//air blockstun
-		hitstunData[0, 10] = 6;//ex block stun
-		hitstunData[0, 11] = 5;//air ex block stun
+		hitstunData[0, 9] = 15;//air blockstun
+		hitstunData[0, 10] = 5;//ex block stun
+		hitstunData[0, 11] = 11;//air ex block stun
 		hitstunData[0, 12] = .75f;//p2 scaling
 
 		hitstunData[1, 0] = 9;//hitstop
@@ -31,9 +31,9 @@ public class HitstunData : MonoBehaviour {
 		hitstunData[1, 6] = 12;//air untech
 		hitstunData[1, 7] = 23;//ch air untech
 		hitstunData[1, 8] = 11;//blockstun
-		hitstunData[1, 9] = 13;//air blockstun
-		hitstunData[1, 10] = 8;//ex block stun
-		hitstunData[1, 11] = 7;//air ex block stun
+		hitstunData[1, 9] = 17;//air blockstun
+		hitstunData[1, 10] = 7;//ex block stun
+		hitstunData[1, 11] = 13;//air ex block stun
 		hitstunData[1, 12] = .8f;//p2 scaling
 
 		hitstunData[2, 0] = 10;//hitstop
@@ -45,9 +45,9 @@ public class HitstunData : MonoBehaviour {
 		hitstunData[2, 6] = 14;//air untech
 		hitstunData[2, 7] = 26;//ch air untech
 		hitstunData[2, 8] = 13;//blockstun
-		hitstunData[2, 9] = 15;//air blockstun
-		hitstunData[2, 10] = 10;//ex block stun
-		hitstunData[2, 11] = 9;//air ex block stun
+		hitstunData[2, 9] = 19;//air blockstun
+		hitstunData[2, 10] = 9;//ex block stun
+		hitstunData[2, 11] = 15;//air ex block stun
 		hitstunData[2, 12] = .85f;//p2 scaling
 
 		hitstunData[3, 0] = 11;//hitstop
@@ -59,9 +59,9 @@ public class HitstunData : MonoBehaviour {
 		hitstunData[3, 6] = 17;//air untech
 		hitstunData[3, 7] = 31;//ch air untech
 		hitstunData[3, 8] = 16;//blockstun
-		hitstunData[3, 9] = 18;//air blockstun
-		hitstunData[3, 10] = 13;//ex block stun
-		hitstunData[3, 11] = 12;//air ex block stun
+		hitstunData[3, 9] = 22;//air blockstun
+		hitstunData[3, 10] = 12;//ex block stun
+		hitstunData[3, 11] = 18;//air ex block stun
 		hitstunData[3, 12] = .89f;//p2 scaling
 
 		hitstunData[4, 0] = 12;//hitstop
@@ -73,9 +73,9 @@ public class HitstunData : MonoBehaviour {
 		hitstunData[4, 6] = 19;//air untech
 		hitstunData[4, 7] = 34;//ch air untech
 		hitstunData[4, 8] = 18;//blockstun
-		hitstunData[4, 9] = 20;//air blockstun
-		hitstunData[4, 10] = 15;//ex block stun
-		hitstunData[4, 11] = 14;//air ex block stun
+		hitstunData[4, 9] = 24;//air blockstun
+		hitstunData[4, 10] = 14;//ex block stun
+		hitstunData[4, 11] = 20;//air ex block stun
 		hitstunData[4, 12] = .92f;//p2 scaling
 
 		hitstunData[5, 0] = 13;//hitstop
@@ -87,9 +87,9 @@ public class HitstunData : MonoBehaviour {
 		hitstunData[5, 6] = 21;//air untech
 		hitstunData[5, 7] = 37;//ch air untech
 		hitstunData[5, 8] = 20;//blockstun
-		hitstunData[5, 9] = 22;//air blockstun
+		hitstunData[5, 9] = 26;//air blockstun
 		hitstunData[5, 10] = 17;//ex block stun
-		hitstunData[5, 11] = 16;//air ex block stun
+		hitstunData[5, 11] = 22;//air ex block stun
 		hitstunData[5, 12] = .94f;//p2 scaling
 	}
 }

@@ -8,16 +8,19 @@ public class InputReaderMk4 : MonoBehaviour {
 
 	public bool facingRight;
 	public int inputDirection;
+	public int inputButton;
 
 	// Use this for initialization
 	void Start () {
 		facingRight = true;
 		inputDirection = 5;
+		inputButton = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		getInput(facingRight);
+		inputDirection = getInput(facingRight);
+		inputButton = getButton();
 	}
 
 	public int getInput(bool facingRight)
@@ -103,7 +106,49 @@ public class InputReaderMk4 : MonoBehaviour {
 			{
 				inputDirection = 3;
 			}
+
+			//return to idle
+			if (!Input.anyKeyDown)
+			{
+				inputDirection = 5;
+			}
 		}
 		return inputDirection;
+	}
+
+	public int getButton()
+	{
+		inputButton = 0;
+		if (Input.GetKey("[4]") || Input.GetKey("[4]") && Input.GetKey("[3]"))
+		{
+			inputButton = 1;//Light (A)
+		}
+		if (Input.GetKey("[5]") || Input.GetKey("[5]") && Input.GetKey("[3]"))
+		{
+			inputButton = 2;//Medium (B)
+		}
+		if (Input.GetKey("[6]") || Input.GetKey("[6]") && Input.GetKey("[3]"))
+		{
+			inputButton = 3;//Heavy (C)
+		}
+		if (Input.GetKey("[3]"))
+		{
+			inputButton = 4;//Special (S)
+		}
+		if (Input.GetKey("[4]") && Input.GetKey("[5]") || 
+			Input.GetKey("[4]") && Input.GetKey("[6]") || 
+			Input.GetKey("[5]") && Input.GetKey("[6]"))
+		{
+			inputButton = 5;//Throw
+		}
+		if (Input.GetKey("[4]") && Input.GetKey("[5]") && Input.GetKey("[6]"))
+		{
+			inputButton = 6;//Psycho Cancel
+		}
+		if (Input.GetKey("[4]") && Input.GetKey("[5]") && Input.GetKey("[6]") && Input.GetKey("[3]"))
+		{
+			inputButton = 7;//Instant Kill
+		}
+		return inputButton;
 	}
 }
