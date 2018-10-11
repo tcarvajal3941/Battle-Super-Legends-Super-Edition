@@ -75,7 +75,7 @@ public class settingsController : MonoBehaviour {
 
 	void checkDuplicates(){
 		for(int k = 0; k < options.Count; k++){
-			if(options[k].Equals("1280 x 800") || options[k].Equals("1360 x 768")){
+			if(options[k].Equals("1360 x 768")){
 				options.RemoveAt(k);
 			}
 		}
