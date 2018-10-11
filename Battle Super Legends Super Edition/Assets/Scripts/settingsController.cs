@@ -65,9 +65,21 @@ public class settingsController : MonoBehaviour {
 						currentResolutionIndex = i; 
 					}
 				}
+				options = checkDuplicates(options);
 				resolutionDropdown.AddOptions(options);
 				resolutionDropdown.value = currentResolutionIndex;
 				resolutionDropdown.RefreshShownValue();
+	}
+
+	List<string> checkDuplicates(List<string> options){
+		for(int i = 0; i < options.Count -1; i++){
+			for(int j = i + 1; j < options.Count; j++){
+				if(options[i] == options[j]){
+					options.RemoveAt(j);
+				}
+			}
+		}
+		return options;
 	}
 	void Update(){
 		PlayerPrefs.SetFloat("MasterSlider", masterSlider.value);
