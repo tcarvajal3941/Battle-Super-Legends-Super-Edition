@@ -62,14 +62,15 @@ public class settingsController : MonoBehaviour {
 							//Debug.Log(i + " resolutions " + resolutions[i]);
 							option = resolutions[i].width + " x " + resolutions[i].height;
 							options.Add(option);
-
-					if (resolutions[i].width == PlayerPrefs.GetInt("ResolutionWidth") && resolutions[i].height == PlayerPrefs.GetInt("ResolutionHeight")){
-						currentResolutionIndex = i;
-					}
 				}
 				checkDuplicates();
 				checkDuplicates();
 				resolutionDropdown.AddOptions(options);
+				for(int k = 0; k< options.Count; k++){
+					if (System.Convert.ToInt32(options[k].Substring(0 , 4)) == PlayerPrefs.GetInt("ResolutionWidth") && System.Convert.ToInt32(options[k].Substring(7)) == PlayerPrefs.GetInt("ResolutionHeight")){
+							currentResolutionIndex = k;
+						}
+				}
 				resolutionDropdown.value = currentResolutionIndex;
 				resolutionDropdown.RefreshShownValue();
 			//	Debug.Log(PlayerPrefs.GetInt("ResolutionHeight"));
