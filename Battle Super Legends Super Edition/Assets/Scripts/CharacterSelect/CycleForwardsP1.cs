@@ -15,16 +15,21 @@ public class CycleForwardsP1 : MonoBehaviour {
 	{
 		sr = characterSelected.GetComponent<SpriteRenderer>();
 		i = 0;
-		sr.sprite = sprites[i];
 	}
 
 	public void CycleCharacterForwards()
 	{
-		sr.sprite = sprites[i];
-		i++;
 		if (i > 2)
 		{
 			i = 0;
+			sr.sprite = sprites[i];
+			Debug.Log(i);
+		}
+		else
+		{
+			sr.sprite = sprites[i];
+			++i;
+			Debug.Log(i);
 		}
 	}
 }

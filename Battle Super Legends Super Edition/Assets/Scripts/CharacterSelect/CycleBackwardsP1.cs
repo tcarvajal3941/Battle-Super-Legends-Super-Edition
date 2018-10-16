@@ -15,7 +15,6 @@ public class CycleBackwardsP1 : MonoBehaviour {
 	{
 		sr = characterSelected.GetComponent<SpriteRenderer>();
 		i = 0;
-		sr.sprite = sprites[i];
 	}
 
 	public void CycleCharacterBackwards()
