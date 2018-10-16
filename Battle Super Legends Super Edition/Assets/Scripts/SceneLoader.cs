@@ -12,12 +12,12 @@ public class SceneLoader : MonoBehaviour {
 	}
 
 	public void startSettings(){
-		SceneManager.LoadScene(2);
+		SceneManager.LoadScene("Settings Menu");
 	}
 	public void startSettingsFromKeybinds(){
 		panel.gameObject.SetActive(false);
 		if(KeybindingsScript.Kb.right != KeyCode.None && KeybindingsScript.Kb.left != KeyCode.None && KeybindingsScript.Kb.jump != KeyCode.None && KeybindingsScript.Kb.crouch != KeyCode.None && KeybindingsScript.Kb.lightAttack != KeyCode.None && KeybindingsScript.Kb.mediumAttack != KeyCode.None && KeybindingsScript.Kb.heavyAttack != KeyCode.None && KeybindingsScript.Kb.uniqueAttack != KeyCode.None){
-			SceneManager.LoadScene(2);
+			SceneManager.LoadScene("Settings Menu");
 		}
 		else{
 				StartCoroutine(checkBindsFail());
@@ -34,7 +34,7 @@ public class SceneLoader : MonoBehaviour {
 	}
 
 	public void startKeyBindings(){
-		SceneManager.LoadScene(3);
+		SceneManager.LoadScene("KeyBindings");
 	}
 
 	public void quitGame(){

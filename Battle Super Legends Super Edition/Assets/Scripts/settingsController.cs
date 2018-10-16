@@ -31,22 +31,23 @@ public class settingsController : MonoBehaviour {
 		musicSlider.value = PlayerPrefs.GetFloat("MusicSlider");
 		sfxSlider.value = PlayerPrefs.GetFloat("SFXSlider");
 
-		resolution.width = PlayerPrefs.GetInt("ResolutionWidth" , 1920);
-		resolution.height = PlayerPrefs.GetInt("ResolutionHeight" , 1080);
+		resolution.width = PlayerPrefs.GetInt("ResolutionWidth");
+		resolution.height = PlayerPrefs.GetInt("ResolutionHeight");
 
 		
-		if(PlayerPrefs.GetInt("FullScreenToggle" , 1) == 1){
+	/*	if(PlayerPrefs.GetInt("FullScreenToggle" , 1) == 1){
 			FullScreenToggle.isOn = true;
 			Screen.SetResolution(resolution.width, resolution.height, true);
 		} else {
 			FullScreenToggle.isOn = false;
 			Screen.SetResolution(resolution.width, resolution.height, false);
 			}
+			*/
 		dropDownFiller();
 	}
 
 	void dropDownFiller(){
-				
+				//Debug.Log(PlayerPrefs.GetInt("ResolutionHeight"));
 				resolutions = Screen.resolutions;
 
 				
@@ -63,7 +64,7 @@ public class settingsController : MonoBehaviour {
 							options.Add(option);
 
 					if (resolutions[i].width == PlayerPrefs.GetInt("ResolutionWidth") && resolutions[i].height == PlayerPrefs.GetInt("ResolutionHeight")){
-						currentResolutionIndex = i; 
+						currentResolutionIndex = i;
 					}
 				}
 				checkDuplicates();
@@ -71,14 +72,10 @@ public class settingsController : MonoBehaviour {
 				resolutionDropdown.AddOptions(options);
 				resolutionDropdown.value = currentResolutionIndex;
 				resolutionDropdown.RefreshShownValue();
+			//	Debug.Log(PlayerPrefs.GetInt("ResolutionHeight"));
 	}
 
 	void checkDuplicates(){
-		for(int k = 0; k < options.Count; k++){
-			if(options[k].Equals("1360 x 768")){
-				options.RemoveAt(k);
-			}
-		}
 		for(int i = 0; i < options.Count - 1; i++){
 			for(int j = i + 1; j < options.Count; j++){
 				if(options[i] == options[j]){
@@ -100,9 +97,7 @@ public class settingsController : MonoBehaviour {
 	}
 
 	public void SetResolution (int resolutionIndex){
-		Debug.Log(System.Convert.ToInt32(options[resolutionIndex].Substring(0 , 4)));
-		Debug.Log(System.Convert.ToInt32(options[resolutionIndex].Substring(7)));
-
+	
 		resolution.width = System.Convert.ToInt32(options[resolutionIndex].Substring(0 , 4));
 		resolution.height = System.Convert.ToInt32(options[resolutionIndex].Substring(7));
 		PlayerPrefs.SetInt("ResolutionHeight", resolution.height);
