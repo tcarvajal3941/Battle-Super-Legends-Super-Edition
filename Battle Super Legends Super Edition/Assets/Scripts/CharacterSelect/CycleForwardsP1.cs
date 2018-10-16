@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CycleForwards : MonoBehaviour {
+public class CycleForwardsP1 : MonoBehaviour {
 
 	private int i;
 	private SpriteRenderer sr;
@@ -11,13 +11,20 @@ public class CycleForwards : MonoBehaviour {
 	[SerializeField]
 	private Sprite[] sprites; 
 	
+	private void Start()
+	{
+		sr = characterSelected.GetComponent<SpriteRenderer>();
+		i = 0;
+		sr.sprite = sprites[i];
+	}
 
 	public void CycleCharacterForwards()
 	{
-		sr = characterSelected.GetComponent<SpriteRenderer>();
-		for(i = 0; i < sprites.Length; i++)
+		sr.sprite = sprites[i];
+		i++;
+		if (i > 2)
 		{
-			sr.sprite = sprites[i]; //finsih this
+			i = 0;
 		}
 	}
 }
