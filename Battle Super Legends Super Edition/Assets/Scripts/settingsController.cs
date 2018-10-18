@@ -35,14 +35,14 @@ public class settingsController : MonoBehaviour {
 		resolution.height = PlayerPrefs.GetInt("ResolutionHeight");
 
 		
-	/*	if(PlayerPrefs.GetInt("FullScreenToggle" , 1) == 1){
+		if(PlayerPrefs.GetInt("FullScreenToggle" , 1) == 1){
 			FullScreenToggle.isOn = true;
 			Screen.SetResolution(resolution.width, resolution.height, true);
 		} else {
 			FullScreenToggle.isOn = false;
 			Screen.SetResolution(resolution.width, resolution.height, false);
 			}
-			*/
+	
 		dropDownFiller();
 	}
 
