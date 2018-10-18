@@ -4,27 +4,31 @@ using UnityEngine;
 
 public class CycleBackwardsP1 : MonoBehaviour {
 
-	private int i;
+	protected CycleForwardsP1 cycle = new CycleForwardsP1();
 	private SpriteRenderer sr;
 	public GameObject characterSelected;
 
 	[SerializeField]
-	private Sprite[] sprites; 
+	private List<Sprite> sprites; 
 	
 	private void Start()
 	{
 		sr = characterSelected.GetComponent<SpriteRenderer>();
-		i = 0;
 	}
 
 	public void CycleCharacterBackwards()
 	{
-		sr = characterSelected.GetComponent<SpriteRenderer>();
-		sr.sprite = sprites[i];
-		i--;
-		if (i < 0)
+		if (cycle.characterIndex > 0)
 		{
-			i = 2;
+			cycle.characterIndex--;
+			sr.sprite = sprites[cycle.characterIndex];
+			Debug.Log(cycle.characterIndex);
+		}
+		else 
+		{
+			cycle.characterIndex = 2;
+			sr.sprite = sprites[2];
+			Debug.Log(cycle.characterIndex);
 		}
 	}
 }

@@ -4,32 +4,31 @@ using UnityEngine;
 
 public class CycleForwardsP1 : MonoBehaviour {
 
-	private int i;
+	public int characterIndex;
 	private SpriteRenderer sr;
 	public GameObject characterSelected;
 
 	[SerializeField]
-	private Sprite[] sprites; 
+	private List<Sprite> sprites; 
 	
 	private void Start()
 	{
 		sr = characterSelected.GetComponent<SpriteRenderer>();
-		i = 0;
 	}
 
 	public void CycleCharacterForwards()
 	{
-		if (i > 2)
+		if (characterIndex < 2)
 		{
-			i = 0;
-			sr.sprite = sprites[i];
-			Debug.Log(i);
+			characterIndex++;
+			sr.sprite = sprites[characterIndex];
+			Debug.Log(characterIndex);
 		}
-		else
+		else 
 		{
-			sr.sprite = sprites[i];
-			++i;
-			Debug.Log(i);
+			characterIndex = 0;
+			sr.sprite = sprites[0];
+			Debug.Log(characterIndex);
 		}
 	}
 }
