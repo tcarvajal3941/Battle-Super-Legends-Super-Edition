@@ -8,7 +8,7 @@ public class SceneLoader : MonoBehaviour {
 	// Use this for initialization
 	public void startCharacterSelect () {
 		
-		SceneManager.LoadScene(1);
+		SceneManager.LoadScene("");
 	}
 
 	public void startSettings(){
