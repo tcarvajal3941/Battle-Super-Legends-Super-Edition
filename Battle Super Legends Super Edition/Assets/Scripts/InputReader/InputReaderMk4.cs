@@ -13,8 +13,6 @@ public class InputReaderMk4 : MonoBehaviour {
 		facingOpponent = true;
 		inputDirection = 5;
 		inputButton    = 0;
-
-		Debug.Log(Input.GetKey(KeybindingsScript.Kb.jump));
 	}
 	
 	// Update is called once per frame
@@ -28,7 +26,7 @@ public class InputReaderMk4 : MonoBehaviour {
 	public int getInput(bool facingOpponent)
 	{
 		inputDirection = 5;
-		if (facingOpponent == false)
+		if (!facingOpponent)
 		{
 			//walk to the left
 			if (Input.GetKey(KeybindingsScript.Kb.left))
@@ -69,7 +67,7 @@ public class InputReaderMk4 : MonoBehaviour {
 				inputDirection = 1;
 			}
 		}
-		if (facingOpponent == true)
+		if (facingOpponent)
 		{
 			//walk to the left
 			if (Input.GetKey(KeybindingsScript.Kb.left))
@@ -108,15 +106,6 @@ public class InputReaderMk4 : MonoBehaviour {
 			if (Input.GetKey(KeybindingsScript.Kb.crouch) && Input.GetKey(KeybindingsScript.Kb.right))
 			{
 				inputDirection = 3;
-			}
-
-			//return to idle
-			if (!Input.GetKey(KeybindingsScript.Kb.left) || !Input.GetKey(KeybindingsScript.Kb.right) ||
-				!Input.GetKey(KeybindingsScript.Kb.jump) || !Input.GetKey(KeybindingsScript.Kb.crouch) ||
-				!Input.GetKey(KeybindingsScript.Kb.left) && !Input.GetKey(KeybindingsScript.Kb.right) ||
-				!Input.GetKey(KeybindingsScript.Kb.jump) && !Input.GetKey(KeybindingsScript.Kb.crouch))
-			{
-				inputDirection = 5;
 			}
 		}
 		return inputDirection;
@@ -161,11 +150,6 @@ public class InputReaderMk4 : MonoBehaviour {
 			Input.GetKey(KeybindingsScript.Kb.heavyAttack) && Input.GetKey(KeybindingsScript.Kb.uniqueAttack))
 		{
 			inputButton = 7;//Instant Kill
-		}
-		if (!Input.GetKey(KeybindingsScript.Kb.lightAttack) || !Input.GetKey(KeybindingsScript.Kb.mediumAttack) ||
-			!Input.GetKey(KeybindingsScript.Kb.heavyAttack) || !Input.GetKey(KeybindingsScript.Kb.uniqueAttack))
-		{
-			inputButton = 0;
 		}
 		return inputButton;
 	}
