@@ -276,7 +276,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 916824175}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a4529d72ba7b5844a47887aeffdd041, type: 3}
+  m_Script: {fileID: 11500000, guid: 5662591967fb04b469f7310f9a383480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &916824178
@@ -350,20 +350,52 @@ MonoBehaviour:
   m_GameObject: {fileID: 916824175}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b12af7aac41bce34381ce54646062457, type: 3}
+  m_Script: {fileID: 11500000, guid: a8e7d2dc7559f1e4f8a01e65bf44a9dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   facingOpponent: 0
   inputDirection: 0
   inputButton: 0
-  jump: 0
-  down: 0
-  left: 0
-  right: 0
-  light: 0
-  med: 0
-  heavy: 0
-  unique: 0
+--- !u!1 &1748924821
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1748924823}
+  - component: {fileID: 1748924822}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1748924822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1748924821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edeb78a2e270d4f4d9500985c78c9b7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1748924823
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1748924821}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 808.9461, y: 272.35364, z: -8.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1758452314 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4970241412379758, guid: 4893aef3717d01240ab29eda530eee1f,

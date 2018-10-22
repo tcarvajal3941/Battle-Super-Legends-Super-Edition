@@ -14,7 +14,6 @@ public class InputReaderMk4 : MonoBehaviour {
 		inputDirection = 5;
 		inputButton    = 0;
 
-		Debug.Log(Input.GetKey(KeybindingsScript.Kb.jump));
 	}
 	
 	// Update is called once per frame
@@ -28,11 +27,12 @@ public class InputReaderMk4 : MonoBehaviour {
 	public int getInput(bool facingOpponent)
 	{
 		inputDirection = 5;
-		if (facingOpponent == false)
+		if (!facingOpponent)
 		{
 			//walk to the left
 			if (Input.GetKey(KeybindingsScript.Kb.left))
         	{
+				
 				inputDirection = 6;
         	}
 			//walk to the right
@@ -69,22 +69,25 @@ public class InputReaderMk4 : MonoBehaviour {
 				inputDirection = 1;
 			}
 		}
-		if (facingOpponent == true)
+		if (facingOpponent)
 		{
 			//walk to the left
 			if (Input.GetKey(KeybindingsScript.Kb.left))
         	{
+				Debug.Log("WE DID IT REDDIT YEAH BOIIIIIIIIIIIIIIIIIIIIIIIIII ");
 				inputDirection = 4;
         	}
 			//walk to the right
         	if (Input.GetKey(KeybindingsScript.Kb.right))
         	{
+				Debug.Log("WE DID IT REDDIT YEAH BOIIIIIIIIIIIIIIIIIIIIIIIIII ");
 				inputDirection = 6;
         	}
 
 			//grounded jump
 			if (Input.GetKey(KeybindingsScript.Kb.jump))
         	{
+				Debug.Log("WE DID IT REDDIT YEAH BOIIIIIIIIIIIIIIIIIIIIIIIIII ");
 				inputDirection = 8;
 			}
 			if (Input.GetKey(KeybindingsScript.Kb.jump) && Input.GetKey(KeybindingsScript.Kb.left))
