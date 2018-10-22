@@ -353,7 +353,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12af7aac41bce34381ce54646062457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  facingRight: 0
   inputDirection: 0
+  inputButton: 0
 --- !u!4 &1758452314 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4970241412379758, guid: 4893aef3717d01240ab29eda530eee1f,

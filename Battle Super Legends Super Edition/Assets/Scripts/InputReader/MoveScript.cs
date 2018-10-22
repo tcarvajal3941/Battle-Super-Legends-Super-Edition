@@ -127,6 +127,7 @@ public class MoveScript : MonoBehaviour {
 		}
 	}
 
+	//calculates gravity
 	private Vector2 getGravity(int jumpDirection, bool grounded)
 	{
 		if (grounded == false)

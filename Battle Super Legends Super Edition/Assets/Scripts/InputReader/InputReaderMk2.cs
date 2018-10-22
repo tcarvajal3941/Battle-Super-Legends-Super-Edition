@@ -124,65 +124,125 @@ public class InputReaderMk2 : MonoBehaviour {
 			lspeed = bwalk;
 			rspeed = fwalk;
 		}
+		
 		if (facingRight == false)
 		{
 			lspeed = fwalk;
 			rspeed = bwalk;
 		}
 
-		//left/right movement
-		if (inputDirection == 4)
+		//right-facing movement
+		if (facingRight == true)
 		{
-			if (grounded == true)
+			if (inputDirection == 4)
 			{
-            	transform.position += Vector3.left * lspeed * Time.deltaTime;
+				if (grounded == true)
+				{
+					transform.position += Vector3.left * lspeed * Time.deltaTime;
+				}
+				else if (grounded == false && jumpDirection == 8)
+				{
+					transform.position += Vector3.left * (lspeed * .5f) * Time.deltaTime;
+				}
 			}
-			else if (grounded == false && jumpDirection == 8)
+			if (inputDirection == 6)
 			{
-            	transform.position += Vector3.left * (lspeed * .5f) * Time.deltaTime;
+				if (grounded == true)
+				{
+					transform.position += Vector3.right * rspeed * Time.deltaTime;
+				}
+				if (grounded == false && jumpDirection == 8)
+				{
+					transform.position += Vector3.right * (rspeed * .5f) * Time.deltaTime;
+				}
 			}
-		}
-		if (inputDirection == 6)
-		{
-			if (grounded == true)
+
+			//jumping
+			if (inputDirection == 7)
 			{
-            	transform.position += Vector3.right * rspeed * Time.deltaTime;
+				jumpDirection = 7;
+				transform.position += Vector3.left * (lspeed * .85f) * Time.deltaTime;
+
+				transform.position += Vector3.up * jumpHeight * Time.deltaTime;
+				grounded = false;
 			}
-			if (grounded == false && jumpDirection == 8)
+			if (inputDirection == 8)
 			{
-            	transform.position += Vector3.right * (rspeed * .5f) * Time.deltaTime;
+				jumpDirection = 8;
+
+				transform.position += Vector3.up * jumpHeight * Time.deltaTime;
+				grounded = false;
+			}
+			if (inputDirection == 9)
+			{
+				jumpDirection = 9;
+				transform.position += Vector3.right * (rspeed * .85f) * Time.deltaTime;
+
+				transform.position += Vector3.up * jumpHeight * Time.deltaTime;
+				grounded = false;
+			}
+
+			//crouching
+			if (inputDirection == 1 || inputDirection == 2 || inputDirection == 3)
+			{
+				//crouch
 			}
 		}
-
-		//jumping
-		if (inputDirection == 7)
+		if (facingRight == false)
 		{
-			jumpDirection = 7;
-			transform.position += Vector3.left * (lspeed * .85f) * Time.deltaTime;
+			if (inputDirection == 6)
+			{
+				if (grounded == true)
+				{
+					transform.position += Vector3.left * lspeed * Time.deltaTime;
+				}
+				else if (grounded == false && jumpDirection == 8)
+				{
+					transform.position += Vector3.left * (lspeed * .5f) * Time.deltaTime;
+				}
+			}
+			if (inputDirection == 4)
+			{
+				if (grounded == true)
+				{
+					transform.position += Vector3.right * rspeed * Time.deltaTime;
+				}
+				if (grounded == false && jumpDirection == 8)
+				{
+					transform.position += Vector3.right * (rspeed * .5f) * Time.deltaTime;
+				}
+			}
 
-			transform.position += Vector3.up * jumpHeight * Time.deltaTime;
-			grounded = false;
-		}
-		if (inputDirection == 8)
-		{
-			jumpDirection = 8;
+			//jumping
+			if (inputDirection == 9)
+			{
+				jumpDirection = 7;
+				transform.position += Vector3.left * (lspeed * .85f) * Time.deltaTime;
 
-			transform.position += Vector3.up * jumpHeight * Time.deltaTime;
-			grounded = false;
-		}
-		if (inputDirection == 9)
-		{
-			jumpDirection = 9;
-			transform.position += Vector3.right * (rspeed * .85f) * Time.deltaTime;
+				transform.position += Vector3.up * jumpHeight * Time.deltaTime;
+				grounded = false;
+			}
+			if (inputDirection == 8)
+			{
+				jumpDirection = 8;
 
-			transform.position += Vector3.up * jumpHeight * Time.deltaTime;
-			grounded = false;
-		}
+				transform.position += Vector3.up * jumpHeight * Time.deltaTime;
+				grounded = false;
+			}
+			if (inputDirection == 7)
+			{
+				jumpDirection = 9;
+				transform.position += Vector3.right * (rspeed * .85f) * Time.deltaTime;
 
-		//crouching
-		if (inputDirection == 1 || inputDirection == 2 || inputDirection == 3)
-		{
-			//crouch
+				transform.position += Vector3.up * jumpHeight * Time.deltaTime;
+				grounded = false;
+			}
+
+			//crouching
+			if (inputDirection == 1 || inputDirection == 2 || inputDirection == 3)
+			{
+				//crouch
+			}
 		}
 
 		//return to idle
