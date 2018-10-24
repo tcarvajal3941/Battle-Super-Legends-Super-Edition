@@ -13,7 +13,10 @@ public class InputReaderMk4 : MonoBehaviour {
 		facingOpponent = true;
 		inputDirection = 5;
 		inputButton    = 0;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3c25f043c00440fbce998ec1b71d00366543cacb
 	}
 	
 	// Update is called once per frame
@@ -112,15 +115,6 @@ public class InputReaderMk4 : MonoBehaviour {
 			{
 				inputDirection = 3;
 			}
-
-			//return to idle
-			if (!Input.GetKey(KeybindingsScript.Kb.left) || !Input.GetKey(KeybindingsScript.Kb.right) ||
-				!Input.GetKey(KeybindingsScript.Kb.jump) || !Input.GetKey(KeybindingsScript.Kb.crouch) ||
-				!Input.GetKey(KeybindingsScript.Kb.left) && !Input.GetKey(KeybindingsScript.Kb.right) ||
-				!Input.GetKey(KeybindingsScript.Kb.jump) && !Input.GetKey(KeybindingsScript.Kb.crouch))
-			{
-				inputDirection = 5;
-			}
 		}
 		return inputDirection;
 	}
@@ -164,11 +158,6 @@ public class InputReaderMk4 : MonoBehaviour {
 			Input.GetKey(KeybindingsScript.Kb.heavyAttack) && Input.GetKey(KeybindingsScript.Kb.uniqueAttack))
 		{
 			inputButton = 7;//Instant Kill
-		}
-		if (!Input.GetKey(KeybindingsScript.Kb.lightAttack) || !Input.GetKey(KeybindingsScript.Kb.mediumAttack) ||
-			!Input.GetKey(KeybindingsScript.Kb.heavyAttack) || !Input.GetKey(KeybindingsScript.Kb.uniqueAttack))
-		{
-			inputButton = 0;
 		}
 		return inputButton;
 	}
