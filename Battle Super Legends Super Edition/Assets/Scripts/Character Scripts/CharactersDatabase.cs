@@ -12,8 +12,8 @@ public class CharactersDatabase : MonoBehaviour
 		//sonic pizzas
 		sonicPizzas.health = 13500;
 		sonicPizzas.specialBar = 0;
-		sonicPizzas.forwardSpeed = .75f;
-		sonicPizzas.backwardSpeed = .5f;
+		sonicPizzas.forwardSpeed = 3;
+		sonicPizzas.backwardSpeed = 2;
 		sonicPizzas.characterName = "Sonic Pizzas";
 
 		//man with hat

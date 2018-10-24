@@ -8,8 +8,8 @@ public class MoveScript : MonoBehaviour {
 	float bwalk; //pull from other scripts
 	bool facingRight; //pull from other scripts
 	float jumpHeight;
-	float gravity;
 	int doubleJumps;
+	float gravity;
 
 	float lspeed;
 	float rspeed;
@@ -18,20 +18,14 @@ public class MoveScript : MonoBehaviour {
 	int setJumpHeight;
 	int setDoubleJumps;
 
-	int playerInputDirection;
-	int playerInputButton;
-
 	// Use this for initialization
 	void Start () {
-	//	InputReaderMk4 InputReader = gameObject.GetComponent<InputReaderMk4>();
-	//	CharacterData charData = gameObject.GetComponent<CharacterData>();
+		fwalk = 3;
+		bwalk = 2;
+		setJumpHeight = 15;
+		setDoubleJumps = 1;
 
-		setJumpHeight = gameObject.GetComponent<CharacterData>().jumpHeight;
-		doubleJumps = setDoubleJumps = gameObject.GetComponent<CharacterData>().doubleJumps;
-		gravity = gameObject.GetComponent<CharacterData>().gravity;
-		fwalk = gameObject.GetComponent<CharacterData>().fwalk;
-		bwalk = gameObject.GetComponent<CharacterData>().bwalk;
-
+		gravity = .75f;
 		bwalk = bwalk*-1;
 		facingRight = true;
 		grounded = true;
@@ -39,8 +33,6 @@ public class MoveScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		playerInputDirection = gameObject.GetComponent<InputReaderMk4>().inputDirection;
-		playerInputButton = gameObject.GetComponent<InputReaderMk4>().inputButton;
 		
 		if (facingRight == true)
 		{
@@ -54,7 +46,7 @@ public class MoveScript : MonoBehaviour {
 			rspeed = bwalk;
 		}
 
-		if (playerInputDirection == 4)//walk Backwards
+		if (InputReaderMk4.GM1.inputDirection == 4)//walk Backwards
 		{
 			if (grounded == true)
 			{
@@ -69,7 +61,7 @@ public class MoveScript : MonoBehaviour {
             	transform.position = tempVec;
 			}
 		}
-		if (playerInputDirection == 6)//walk Forwards
+		if (InputReaderMk4.GM1.inputDirection == 6)//walk Forwards
 		{
 			if (grounded == true)
 			{
@@ -85,19 +77,19 @@ public class MoveScript : MonoBehaviour {
 			}
 		}
 
-		if (playerInputDirection == 7)//jump Backwards
+		if (InputReaderMk4.GM1.inputDirection == 7)//jump Backwards
 		{
 			jumpDirection = 7;
 			grounded = false;
 			transform.position = getGravity(jumpDirection, grounded);
 		}
-		if (playerInputDirection == 8)//Neutral Jump, steerable
+		if (InputReaderMk4.GM1.inputDirection == 8)//Neutral Jump, steerable
 		{
 			jumpDirection = 8;
 			grounded = false;
 			transform.position = getGravity(jumpDirection, grounded);
 		}
-		if (playerInputDirection == 9)//jump Forwards
+		if (InputReaderMk4.GM1.inputDirection == 9)//jump Forwards
 		{
 			jumpDirection = 9;
 			grounded = false;
@@ -111,7 +103,8 @@ public class MoveScript : MonoBehaviour {
 		}
 
 		//crouching
-		if (playerInputDirection == 1 || playerInputDirection == 2 || playerInputDirection == 3)
+		if (InputReaderMk4.GM1.inputDirection == 1 || 
+			InputReaderMk4.GM1.inputDirection == 2 || InputReaderMk4.GM1.inputDirection == 3)
 		{
 			//crouch
 		}
