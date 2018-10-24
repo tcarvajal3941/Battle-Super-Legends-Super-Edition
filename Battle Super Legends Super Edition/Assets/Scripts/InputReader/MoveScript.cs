@@ -8,8 +8,8 @@ public class MoveScript : MonoBehaviour {
 	float bwalk; //pull from other scripts
 	bool facingRight; //pull from other scripts
 	float jumpHeight;
-	float gravity;
 	int doubleJumps;
+	float gravity;
 
 	float lspeed;
 	float rspeed;
@@ -23,15 +23,12 @@ public class MoveScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	//	InputReaderMk4 InputReader = gameObject.GetComponent<InputReaderMk4>();
-	//	CharacterData charData = gameObject.GetComponent<CharacterData>();
+		fwalk = 3;
+		bwalk = 2;
+		setJumpHeight = 15;
+		setDoubleJumps = 1;
 
-		setJumpHeight = gameObject.GetComponent<CharacterData>().jumpHeight;
-		doubleJumps = setDoubleJumps = gameObject.GetComponent<CharacterData>().doubleJumps;
-		gravity = gameObject.GetComponent<CharacterData>().gravity;
-		fwalk = gameObject.GetComponent<CharacterData>().fwalk;
-		bwalk = gameObject.GetComponent<CharacterData>().bwalk;
-
+		gravity = .75f;
 		bwalk = bwalk*-1;
 		facingRight = true;
 		grounded = true;
@@ -39,8 +36,10 @@ public class MoveScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		playerInputDirection = gameObject.GetComponent<InputReaderMk4>().inputDirection;
-		playerInputButton = gameObject.GetComponent<InputReaderMk4>().inputButton;
+		playerInputDirection = InputReaderMk4.GM1.inputDirection;
+		Debug.Log("input direction via movescript: "+playerInputDirection);
+		playerInputButton = InputReaderMk4.GM1.inputButton;
+		Debug.Log("input button via movescript: "+playerInputButton);
 		
 		if (facingRight == true)
 		{

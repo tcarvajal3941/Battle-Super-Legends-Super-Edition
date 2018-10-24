@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class InputReaderMk4 : MonoBehaviour {
 
+	public static InputReaderMk4 GM1;
 	public bool facingOpponent;
 	public int  inputDirection;
 	public int  inputButton;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		facingOpponent = true;
 		inputDirection = 5;
 		inputButton    = 0;
