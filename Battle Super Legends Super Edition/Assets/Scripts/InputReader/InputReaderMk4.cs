@@ -13,10 +13,6 @@ public class InputReaderMk4 : MonoBehaviour {
 		facingOpponent = true;
 		inputDirection = 5;
 		inputButton    = 0;
-<<<<<<< HEAD
-
-=======
->>>>>>> 3c25f043c00440fbce998ec1b71d00366543cacb
 	}
 	
 	// Update is called once per frame
