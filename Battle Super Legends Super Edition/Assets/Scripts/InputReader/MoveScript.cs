@@ -18,9 +18,6 @@ public class MoveScript : MonoBehaviour {
 	int setJumpHeight;
 	int setDoubleJumps;
 
-	int playerInputDirection;
-	int playerInputButton;
-
 	// Use this for initialization
 	void Start () {
 		fwalk = 3;
@@ -36,10 +33,6 @@ public class MoveScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		playerInputDirection = InputReaderMk4.GM1.inputDirection;
-		Debug.Log("input direction via movescript: "+playerInputDirection);
-		playerInputButton = InputReaderMk4.GM1.inputButton;
-		Debug.Log("input button via movescript: "+playerInputButton);
 		
 		if (facingRight == true)
 		{
@@ -53,7 +46,7 @@ public class MoveScript : MonoBehaviour {
 			rspeed = bwalk;
 		}
 
-		if (playerInputDirection == 4)//walk Backwards
+		if (InputReaderMk4.GM1.inputDirection == 4)//walk Backwards
 		{
 			if (grounded == true)
 			{
@@ -68,7 +61,7 @@ public class MoveScript : MonoBehaviour {
             	transform.position = tempVec;
 			}
 		}
-		if (playerInputDirection == 6)//walk Forwards
+		if (InputReaderMk4.GM1.inputDirection == 6)//walk Forwards
 		{
 			if (grounded == true)
 			{
@@ -84,19 +77,19 @@ public class MoveScript : MonoBehaviour {
 			}
 		}
 
-		if (playerInputDirection == 7)//jump Backwards
+		if (InputReaderMk4.GM1.inputDirection == 7)//jump Backwards
 		{
 			jumpDirection = 7;
 			grounded = false;
 			transform.position = getGravity(jumpDirection, grounded);
 		}
-		if (playerInputDirection == 8)//Neutral Jump, steerable
+		if (InputReaderMk4.GM1.inputDirection == 8)//Neutral Jump, steerable
 		{
 			jumpDirection = 8;
 			grounded = false;
 			transform.position = getGravity(jumpDirection, grounded);
 		}
-		if (playerInputDirection == 9)//jump Forwards
+		if (InputReaderMk4.GM1.inputDirection == 9)//jump Forwards
 		{
 			jumpDirection = 9;
 			grounded = false;
@@ -110,7 +103,8 @@ public class MoveScript : MonoBehaviour {
 		}
 
 		//crouching
-		if (playerInputDirection == 1 || playerInputDirection == 2 || playerInputDirection == 3)
+		if (InputReaderMk4.GM1.inputDirection == 1 || 
+			InputReaderMk4.GM1.inputDirection == 2 || InputReaderMk4.GM1.inputDirection == 3)
 		{
 			//crouch
 		}

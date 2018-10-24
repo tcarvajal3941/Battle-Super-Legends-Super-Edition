@@ -122,7 +122,6 @@ GameObject:
   m_Component:
   - component: {fileID: 748189003}
   - component: {fileID: 748189002}
-  - component: {fileID: 748189005}
   - component: {fileID: 748189004}
   m_Layer: 0
   m_Name: GM
@@ -168,20 +167,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sonicPizzas: {fileID: 0}
   manWithHat: {fileID: 0}
---- !u!114 &748189005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 748189001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b12af7aac41bce34381ce54646062457, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  facingOpponent: 0
-  inputDirection: 0
-  inputButton: 0
 --- !u!1 &830713250
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,6 +175,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 830713251}
+  - component: {fileID: 830713253}
+  - component: {fileID: 830713252}
+  - component: {fileID: 830713254}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -211,6 +199,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!143 &830713252
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 830713250}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &830713253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 830713250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a4529d72ba7b5844a47887aeffdd041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &830713254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 830713250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b12af7aac41bce34381ce54646062457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  facingOpponent: 0
+  inputDirection: 0
+  inputButton: 0
 --- !u!1 &1190267637
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,8 +250,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1190267638}
   - component: {fileID: 1190267642}
-  - component: {fileID: 1190267640}
-  - component: {fileID: 1190267639}
   m_Layer: 0
   m_Name: trash
   m_TagString: Untagged
@@ -242,34 +270,6 @@ Transform:
   m_Father: {fileID: 830713251}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &1190267639
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1190267637}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 1.28
-  m_Radius: 0.64
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1190267640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1190267637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a4529d72ba7b5844a47887aeffdd041, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1190267642
 SpriteRenderer:
   m_ObjectHideFlags: 0

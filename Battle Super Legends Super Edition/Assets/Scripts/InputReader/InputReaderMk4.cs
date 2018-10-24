@@ -10,7 +10,7 @@ public class InputReaderMk4 : MonoBehaviour {
 	public int  inputButton;
 
 	// Use this for initialization
-	void Awake () {
+	void Start () {
 		facingOpponent = true;
 		inputDirection = 5;
 		inputButton    = 0;
@@ -18,13 +18,13 @@ public class InputReaderMk4 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		inputDirection = getInput(facingOpponent);
+		inputDirection = getInput();
 		Debug.Log("Input Direction: " + inputDirection);
 		inputButton = getButton();
 		Debug.Log("Input Button: " + inputButton);
 	}
 
-	public int getInput(bool facingOpponent)
+	public int getInput()
 	{
 		inputDirection = 5;
 		if (!facingOpponent)
