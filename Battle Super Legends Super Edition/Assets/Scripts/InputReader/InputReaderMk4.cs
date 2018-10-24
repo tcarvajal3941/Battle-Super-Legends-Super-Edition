@@ -31,6 +31,7 @@ public class InputReaderMk4 : MonoBehaviour {
 			//walk to the left
 			if (Input.GetKey(KeybindingsScript.Kb.left))
         	{
+				
 				inputDirection = 6;
         	}
 			//walk to the right
@@ -72,17 +73,20 @@ public class InputReaderMk4 : MonoBehaviour {
 			//walk to the left
 			if (Input.GetKey(KeybindingsScript.Kb.left))
         	{
+				Debug.Log("WE DID IT REDDIT YEAH BOIIIIIIIIIIIIIIIIIIIIIIIIII ");
 				inputDirection = 4;
         	}
 			//walk to the right
         	if (Input.GetKey(KeybindingsScript.Kb.right))
         	{
+				Debug.Log("WE DID IT REDDIT YEAH BOIIIIIIIIIIIIIIIIIIIIIIIIII ");
 				inputDirection = 6;
         	}
 
 			//grounded jump
 			if (Input.GetKey(KeybindingsScript.Kb.jump))
         	{
+				Debug.Log("WE DID IT REDDIT YEAH BOIIIIIIIIIIIIIIIIIIIIIIIIII ");
 				inputDirection = 8;
 			}
 			if (Input.GetKey(KeybindingsScript.Kb.jump) && Input.GetKey(KeybindingsScript.Kb.left))
