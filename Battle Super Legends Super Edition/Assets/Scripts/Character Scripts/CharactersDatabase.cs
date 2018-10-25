@@ -4,18 +4,25 @@ using UnityEngine;
 
 public class CharactersDatabase : MonoBehaviour 
 {
-	public Character sonicPizzas = new Character();
-	public Character manWithHat = new Character();
+
+	public static CharactersDatabase CD;
 
 	void Start () 
 	{
 		//sonic pizzas
-		sonicPizzas.health = 13500;
-		sonicPizzas.specialBar = 0;
-		sonicPizzas.forwardSpeed = 3;
-		sonicPizzas.backwardSpeed = 2;
-		sonicPizzas.characterName = "Sonic Pizzas";
+		
 
 		//man with hat
+	}
+
+	public class SonicPizzas : MonoBehaviour
+	{
+		public static SonicPizzas SP;
+		public int health       = 13500;
+		public float fwalk      = .05f;
+		public float bwalk      = .035f;
+		public float jumpHeight = .2f;
+		public float gravity    = .01f;
+		public int airOptions   = 1;
 	}
 }

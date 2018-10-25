@@ -2,42 +2,95 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveScript : MonoBehaviour {
-
-	public static MoveScript MS;
+public class CombinedMove : MonoBehaviour {
+	public bool facingOpponent;
+	public int  inputDirection;
+	public int  inputButton;
 
 	float fwalk; //pull from other scripts
 	float bwalk; //pull from other scripts
-	bool facingRight; //pull from other scripts
+	bool  facingRight; //pull from other scripts
 	float jumpHeight;
-	int doubleJumps;
+	int   airOptions;
 	float gravity;
 
 	float lspeed;
 	float rspeed;
-	bool grounded;
-	int jumpDirection = 0;
-	int setJumpHeight;
-	int setDoubleJumps;
+	bool  grounded;
+	int   jumpDirection = 0;
+	float setJumpHeight;
+	int   setAirOptions;
 
 	// Use this for initialization
 	void Start () {
-		fwalk = 3;
-		bwalk = 2;
-		setJumpHeight = 15;
-		setDoubleJumps = 1;
+		facingOpponent = true;
+		inputDirection = 5;
+		inputButton    = 0;
 
-		gravity = .75f;
+		fwalk         = .05f;
+		bwalk         = .035f;
+		setJumpHeight = .2f;
+		setAirOptions = 1;
+		gravity       = .01f;
+
 		bwalk = bwalk*-1;
 		facingRight = true;
 		grounded = true;
 	}
 	
-	
+	// Update is called once per frame
+	void Update () {
+		getInput();
+		Debug.Log("Input Direction: " + inputDirection);
+	}
+
+	public void getInput()
+	{
+		inputDirection = 5;
+		//walk to the left
+		if (Input.GetKey(KeybindingsScript.Kb.left))
+		{
+			inputDirection = 4;
+			Debug.Log(inputDirection);
+		}
+		//walk to the right
+		if (Input.GetKey(KeybindingsScript.Kb.right))
+		{
+			inputDirection = 6;
+		}
+
+		//grounded jump
+		if (Input.GetKeyDown(KeybindingsScript.Kb.jump))
+		{
+			inputDirection = 8;
+		}
+		if (Input.GetKeyDown(KeybindingsScript.Kb.jump) && Input.GetKey(KeybindingsScript.Kb.left))
+		{
+			inputDirection = 7;
+		}
+		if (Input.GetKeyDown(KeybindingsScript.Kb.jump) && Input.GetKey(KeybindingsScript.Kb.right))
+		{
+			inputDirection = 9;
+		}
+		
+		//crouch
+		if (Input.GetKey(KeybindingsScript.Kb.crouch))
+		{
+			inputDirection = 2;
+		}
+		if (Input.GetKey(KeybindingsScript.Kb.crouch) && Input.GetKey(KeybindingsScript.Kb.left))
+		{
+			inputDirection = 1;
+		}
+		if (Input.GetKey(KeybindingsScript.Kb.crouch) && Input.GetKey(KeybindingsScript.Kb.right))
+		{
+			inputDirection = 3;
+		}
+		Move(inputDirection);
+	}
 
 	// Update is called once per frame
 	public void Move (int inputDirection) {
-		Debug.Log("input direction via movescript: "+inputDirection);
 		if (facingRight == true)
 		{
 			lspeed = bwalk;
@@ -54,30 +107,22 @@ public class MoveScript : MonoBehaviour {
 		{
 			if (grounded == true)
 			{
-				Vector2 tempVec = transform.position;
-				tempVec.x += transform.position.x * lspeed * Time.deltaTime;
-            	transform.position = tempVec;
+				transform.Translate(lspeed, 0, 0);
 			}
 			else if (grounded == false && jumpDirection == 8)
 			{
-            	Vector2 tempVec = transform.position;
-				tempVec.x += transform.position.x * (lspeed * .5f) * Time.deltaTime;
-            	transform.position = tempVec;
+            	transform.Translate(lspeed*.5f, 0, 0);
 			}
 		}
 		if (inputDirection == 6)//walk Forwards
 		{
 			if (grounded == true)
 			{
-				Vector2 tempVec = transform.position;
-				tempVec.x += transform.position.x * rspeed * Time.deltaTime;
-				transform.position = tempVec;
+				transform.Translate(rspeed, 0, 0);
 			}
 			if (grounded == false && jumpDirection == 8)
 			{
-				Vector2 tempVec = transform.position;
-				tempVec.x += transform.position.x * (rspeed * .5f) * Time.deltaTime;
-				transform.position = tempVec;
+				transform.Translate(rspeed*.5f, 0, 0);
 			}
 		}
 
@@ -119,7 +164,7 @@ public class MoveScript : MonoBehaviour {
 			transform.position = new Vector2(transform.position.x, 0);
 			grounded = true;
 			jumpHeight = setJumpHeight;
-			doubleJumps = setDoubleJumps;
+			airOptions = setAirOptions;
 			jumpDirection = 0;
 		}
 	}
@@ -131,20 +176,13 @@ public class MoveScript : MonoBehaviour {
 		{
 			if (jumpDirection == 9)
 			{
-				Vector2 tempVecII = transform.position;
-				tempVecII.x += transform.position.x * (rspeed * .85f) * Time.deltaTime;
-				transform.position = tempVecII;
+				transform.Translate(rspeed * .85f, 0, 0);
 			}
 			if (jumpDirection == 7)
 			{
-				Vector2 tempVecII = transform.position;
-				tempVecII.x += transform.position.x * (lspeed * .85f) * Time.deltaTime;
-				transform.position = tempVecII;
+				transform.Translate(lspeed * .85f, 0, 0);
 			}
-
-			Vector2 tempVec = transform.position;
-			tempVec.y += transform.position.y * jumpHeight * Time.deltaTime;
-            transform.position = tempVec;
+			transform.Translate(0, jumpHeight, 0);
 			jumpHeight -= gravity;
 		}
 		return transform.position;

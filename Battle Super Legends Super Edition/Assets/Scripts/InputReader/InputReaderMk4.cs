@@ -18,102 +18,56 @@ public class InputReaderMk4 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		inputDirection = getInput();
+		getInput();
 		Debug.Log("Input Direction: " + inputDirection);
 		inputButton = getButton();
 		Debug.Log("Input Button: " + inputButton);
 	}
 
-	public int getInput()
+	public void getInput()
 	{
-		inputDirection = 5;
-		if (!facingOpponent)
+	inputDirection = 5;
+	
+		//walk to the left
+		if (Input.GetKey(KeybindingsScript.Kb.left))
 		{
-			//walk to the left
-			if (Input.GetKey(KeybindingsScript.Kb.left))
-        	{
-				
-				inputDirection = 6;
-        	}
-			//walk to the right
-        	if (Input.GetKey(KeybindingsScript.Kb.right))
-        	{
-				inputDirection = 4;
-        	}
-
-			//grounded jump
-			if (Input.GetKey(KeybindingsScript.Kb.jump))
-        	{
-				inputDirection = 8;
-			}
-			if (Input.GetKey(KeybindingsScript.Kb.jump) && Input.GetKey(KeybindingsScript.Kb.left))
-			{
-				inputDirection = 9;
-			}
-			if (Input.GetKey(KeybindingsScript.Kb.jump) && Input.GetKey(KeybindingsScript.Kb.right))
-			{
-				inputDirection = 7;
-			}
-			
-			//crouch
-        	if (Input.GetKey(KeybindingsScript.Kb.crouch))
-        	{
-				inputDirection = 2;
-			}
-			if (Input.GetKey(KeybindingsScript.Kb.crouch) && Input.GetKey(KeybindingsScript.Kb.left))
-			{
-				inputDirection = 3;
-			}
-			if (Input.GetKey(KeybindingsScript.Kb.left) && Input.GetKey(KeybindingsScript.Kb.right))
-			{
-				inputDirection = 1;
-			}
+			inputDirection = 6;
+			Debug.Log(inputDirection);
 		}
-		if (facingOpponent)
+		//walk to the right
+		if (Input.GetKey(KeybindingsScript.Kb.right))
 		{
-			//walk to the left
-			if (Input.GetKey(KeybindingsScript.Kb.left))
-        	{
-				Debug.Log("WE DID IT REDDIT YEAH BOIIIIIIIIIIIIIIIIIIIIIIIIII ");
-				inputDirection = 4;
-        	}
-			//walk to the right
-        	if (Input.GetKey(KeybindingsScript.Kb.right))
-        	{
-				Debug.Log("WE DID IT REDDIT YEAH BOIIIIIIIIIIIIIIIIIIIIIIIIII ");
-				inputDirection = 6;
-        	}
-
-			//grounded jump
-			if (Input.GetKey(KeybindingsScript.Kb.jump))
-        	{
-				Debug.Log("WE DID IT REDDIT YEAH BOIIIIIIIIIIIIIIIIIIIIIIIIII ");
-				inputDirection = 8;
-			}
-			if (Input.GetKey(KeybindingsScript.Kb.jump) && Input.GetKey(KeybindingsScript.Kb.left))
-			{
-				inputDirection = 7;
-			}
-			if (Input.GetKey(KeybindingsScript.Kb.jump) && Input.GetKey(KeybindingsScript.Kb.right))
-			{
-				inputDirection = 9;
-			}
-			
-			//crouch
-        	if (Input.GetKey(KeybindingsScript.Kb.crouch))
-        	{
-				inputDirection = 2;
-			}
-			if (Input.GetKey(KeybindingsScript.Kb.crouch) && Input.GetKey(KeybindingsScript.Kb.left))
-			{
-				inputDirection = 1;
-			}
-			if (Input.GetKey(KeybindingsScript.Kb.crouch) && Input.GetKey(KeybindingsScript.Kb.right))
-			{
-				inputDirection = 3;
-			}
+			inputDirection = 4;
 		}
-		return inputDirection;
+
+		//grounded jump
+		if (Input.GetKey(KeybindingsScript.Kb.jump))
+		{
+			inputDirection = 8;
+		}
+		if (Input.GetKey(KeybindingsScript.Kb.jump) && Input.GetKey(KeybindingsScript.Kb.left))
+		{
+			inputDirection = 9;
+		}
+		if (Input.GetKey(KeybindingsScript.Kb.jump) && Input.GetKey(KeybindingsScript.Kb.right))
+		{
+			inputDirection = 7;
+		}
+		
+		//crouch
+		if (Input.GetKey(KeybindingsScript.Kb.crouch))
+		{
+			inputDirection = 2;
+		}
+		if (Input.GetKey(KeybindingsScript.Kb.crouch) && Input.GetKey(KeybindingsScript.Kb.left))
+		{
+			inputDirection = 3;
+		}
+		if (Input.GetKey(KeybindingsScript.Kb.crouch) && Input.GetKey(KeybindingsScript.Kb.right))
+		{
+			inputDirection = 1;
+		}
+		MoveScript.MS.Move(inputDirection);
 	}
 
 	public int getButton()
