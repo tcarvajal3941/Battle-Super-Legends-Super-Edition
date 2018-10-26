@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CombinedMove : MonoBehaviour {
-	public bool facingOpponent;
 	public int  inputDirection;
 	public int  inputButton;
 
@@ -23,9 +22,8 @@ public class CombinedMove : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		facingOpponent = true;
+		facingRight = true;
 		inputDirection = 5;
-		inputButton    = 0;
 
 		fwalk         = .05f;
 		bwalk         = .035f;
@@ -33,9 +31,9 @@ public class CombinedMove : MonoBehaviour {
 		setAirOptions = 1;
 		gravity       = .01f;
 
-		bwalk = bwalk*-1;
+		bwalk       = bwalk*-1;
 		facingRight = true;
-		grounded = true;
+		grounded    = true;
 	}
 	
 	// Update is called once per frame
@@ -125,24 +123,29 @@ public class CombinedMove : MonoBehaviour {
 				transform.Translate(rspeed*.5f, 0, 0);
 			}
 		}
-
-		if (inputDirection == 7)//jump Backwards
+		if (grounded == true || grounded == false && airOptions > 0)
 		{
+			if (inputDirection == 7)//jump Backwards
+			{
 			jumpDirection = 7;
 			grounded = false;
+			jumpHeight = setJumpHeight;
 			transform.position = getGravity(jumpDirection, grounded);
-		}
-		if (inputDirection == 8)//Neutral Jump, steerable
-		{
+			}
+			if (inputDirection == 8)//Neutral Jump, steerable
+			{
 			jumpDirection = 8;
 			grounded = false;
+			jumpHeight = setJumpHeight;
 			transform.position = getGravity(jumpDirection, grounded);
-		}
-		if (inputDirection == 9)//jump Forwards
-		{
+			}
+			if (inputDirection == 9)//jump Forwards
+			{
 			jumpDirection = 9;
 			grounded = false;
+			jumpHeight = setJumpHeight;
 			transform.position = getGravity(jumpDirection, grounded);
+			}
 		}
 
 		//activates gravity if airborn
@@ -156,6 +159,7 @@ public class CombinedMove : MonoBehaviour {
 			inputDirection == 2 || inputDirection == 3)
 		{
 			//crouch
+			
 		}
 
 		//sets ground limit and resets air options
@@ -174,6 +178,7 @@ public class CombinedMove : MonoBehaviour {
 	{
 		if (grounded == false)
 		{
+			gravity = .01f;
 			if (jumpDirection == 9)
 			{
 				transform.Translate(rspeed * .85f, 0, 0);
