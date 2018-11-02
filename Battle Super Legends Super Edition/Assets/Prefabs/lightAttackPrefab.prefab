@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4345916656824584}
   - component: {fileID: 61486570106412886}
+  - component: {fileID: 114214268822124776}
   m_Layer: 0
   m_Name: lightAttackPrefab
   m_TagString: Untagged
@@ -34,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1208566608720732}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.89, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -49,10 +50,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.45645154, y: 0.21909666}
+  m_Offset: {x: 0.6025161, y: 0.16432261}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -63,5 +64,17 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9129031, y: 0.5618067}
+  m_Size: {x: 1.6207739, y: 0.4522586}
   m_EdgeRadius: 0
+--- !u!114 &114214268822124776
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1208566608720732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ee1638b58149c641a0cb1800d0e408e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
