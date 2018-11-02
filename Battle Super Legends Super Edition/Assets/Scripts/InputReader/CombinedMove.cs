@@ -28,7 +28,7 @@ public class CombinedMove : MonoBehaviour {
 		fwalk         = .05f;
 		bwalk         = .035f;
 		setJumpHeight = .2f;
-		setAirOptions = 1;
+		setAirOptions = 2;
 		gravity       = .01f;
 
 		bwalk       = bwalk*-1;
@@ -127,25 +127,26 @@ public class CombinedMove : MonoBehaviour {
 		{
 			if (inputDirection == 7)//jump Backwards
 			{
-			jumpDirection = 7;
-			grounded = false;
-			jumpHeight = setJumpHeight;
-			transform.position = getGravity(jumpDirection, grounded);
+				jumpDirection = 7;
+				grounded = false;
+				jumpHeight = setJumpHeight;
+				transform.position = getGravity(jumpDirection, grounded);
 			}
 			if (inputDirection == 8)//Neutral Jump, steerable
 			{
-			jumpDirection = 8;
-			grounded = false;
-			jumpHeight = setJumpHeight;
-			transform.position = getGravity(jumpDirection, grounded);
+				jumpDirection = 8;
+				grounded = false;
+				jumpHeight = setJumpHeight;
+				transform.position = getGravity(jumpDirection, grounded);
 			}
 			if (inputDirection == 9)//jump Forwards
 			{
-			jumpDirection = 9;
-			grounded = false;
-			jumpHeight = setJumpHeight;
-			transform.position = getGravity(jumpDirection, grounded);
+				jumpDirection = 9;
+				grounded = false;
+				jumpHeight = setJumpHeight;
+				transform.position = getGravity(jumpDirection, grounded);
 			}
+			airOptions--;
 		}
 
 		//activates gravity if airborn
