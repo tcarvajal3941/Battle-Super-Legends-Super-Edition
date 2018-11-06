@@ -218,11 +218,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 830713250}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f2388fc7e3869942b54facc8fe2cd7d, type: 3}
+  m_Script: {fileID: 11500000, guid: 1755df52f96a5f546a0b2e628516fe49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputDirection: 0
-  inputButton: 0
 --- !u!95 &830713255
 Animator:
   serializedVersion: 3
@@ -249,9 +247,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 830713250}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edeb78a2e270d4f4d9500985c78c9b7d, type: 3}
+  m_Script: {fileID: 11500000, guid: e7ed1e15243549b42bc461e2be746ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputDirection: 0
+  inputButton: 0
 --- !u!114 &830713257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 830713250}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5125f667e59bb644a711e69967649ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 088c35e127af4a44da386291d7dc35b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1467440103

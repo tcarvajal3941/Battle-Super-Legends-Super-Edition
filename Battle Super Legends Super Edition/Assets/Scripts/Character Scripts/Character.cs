@@ -9,12 +9,33 @@ public class Character : MonoBehaviour
 	public float backwardSpeed { get; set; }
 	public string characterName { get; set; }
 
+	const int NONE = 0;
+	const int HIGH = 1;
+	const int MID = 2;
+	const int LOW = 3;
+	const int THROW = 4;
+	const int AIRTHROW = 5;
+	const int UNBLOCKABLE = 6;
+
+	const int HEAD = 0;
+	const int BODY = 1;
+	const int FOOT = 2;
+	const int PROJECTILE = 3;
+	//const int THROW = 4;
+
+	//const int NONE = 0;
+	const int SOFTKD = 1;
+	const int HARDKD = 2;
+	const int WALLBOUNCE = 3;
+	const int GROUNDBOUNCE = 4;
+
 	void Start () 
 	{
 		//check if any of the properties are null. If they are, throw a Debug.LogError
 		//move data here?
 
 		// var moveList = new List<move>();
+		var moveList = new List<hurtboxData>();
 	}	
 	
 	/* 
@@ -55,7 +76,10 @@ public class Character : MonoBehaviour
 		public string moveID { get; set; }           // searchable move ID
 		public ArrayList hitbox { get; set; }        // detection box for HITTING OPPONENT (ID, x offset, y offset, x size, y size, duration)
 		public int damage { get; set; }              // damage
+		public int minimumDamage { get; set; }       // minimum damage
 		public float chipMultiplier { get; set; }    // damage multiplier on block
+		public float hitMeterGain { get; set; }      // meter gain multiplier on hit
+		public float blockMeterGain { get; set; }    // meter gain multiplier on block
     	public int blockAttribute { get; set; }      // how to block (Mid, High, Low, Throw, Airthrow)
 		public int moveAttribute { get; set; }       // move attribute (H, B, F, T, P)
 		public float p1 { get; set; }                // starter damage scaling
@@ -74,6 +98,7 @@ public class Character : MonoBehaviour
 	public class hurtboxData
 	{
 		public string moveID { get; set; }             // searchable move ID
+		public hitboxData hitboxData { get; set; }     // hitbox
     	public int startup { get; set; }               // startup frames
     	public int active { get; set; }                // active frames
     	public int recovery { get; set; }              // recovery frames
@@ -84,5 +109,6 @@ public class Character : MonoBehaviour
 		public ArrayList whiffCancels { get; set; }    // cancels on whiff
 		public ArrayList attributeInvuln { get; set; } // invulnerability to attributes
 		public ArrayList movement { get; set; }        // x/y movement
+		public float meterCost { get; set; }           // meter cost, usually 0
 	}
 }
