@@ -12,6 +12,7 @@ public class CombinedMove : MonoBehaviour {
 	float jumpHeight;
 	int   airOptions;
 	float gravity;
+	float dashMultiplier;
 
 	float lspeed;
 	float rspeed;
@@ -92,18 +93,31 @@ public class CombinedMove : MonoBehaviour {
 		if (facingRight == true)
 		{
 			lspeed = bwalk;
-			rspeed = fwalk;
+			rspeed = fwalk * dashMultiplier;
 		}
 		
 		if (facingRight == false)
 		{
-			lspeed = fwalk;
+			lspeed = fwalk * dashMultiplier;
 			rspeed = bwalk;
 		}
 
 		if (inputDirection == 4)//walk Backwards
 		{
-			if (grounded == true)
+			for (int i = 0; i > 8; i++)
+			{
+				if (inputDirection == 5)
+				{
+					for (int j = 0; j > 8; j++)
+					{
+						if (inputDirection == 4)
+						{
+							transform.position = getDash(grounded, facingRight, fwalk, bwalk, false);
+						}
+					}
+				}
+			}
+			else if (grounded == true)
 			{
 				transform.Translate(lspeed, 0, 0);
 			}
@@ -114,11 +128,24 @@ public class CombinedMove : MonoBehaviour {
 		}
 		if (inputDirection == 6)//walk Forwards
 		{
-			if (grounded == true)
+			for (int i = 0; i > 8; i++)
+			{
+				if (inputDirection == 5)
+				{
+					for (int j = 0; j > 8; j++)
+					{
+						if (inputDirection == 6)
+						{
+							transform.position = getDash(grounded, facingRight, fwalk, bwalk, true);
+						}
+					}
+				}
+			}
+			else if (grounded == true)
 			{
 				transform.Translate(rspeed, 0, 0);
 			}
-			if (grounded == false && jumpDirection == 8)
+			else if (grounded == false && jumpDirection == 8)
 			{
 				transform.Translate(rspeed*.5f, 0, 0);
 			}
@@ -191,6 +218,63 @@ public class CombinedMove : MonoBehaviour {
 			transform.Translate(0, jumpHeight, 0);
 			jumpHeight -= gravity;
 		}
+		return transform.position;
+	}
+
+	private Vector2 getDash(bool grounded, bool facingRight, float fwalk, float bwalk, bool fdash)
+	{
+		float move;
+		if (fdash)
+		{
+			if (facingRight)
+			{
+				if (grounded)
+				{
+					move = fwalk * 2;
+				}
+				else if (!grounded)
+				{
+					move = fwalk * 2;
+				}
+			}
+			else if (!facingRight)
+			{
+				if (grounded)
+				{
+					move = fwalk * 2;
+				}
+				else if (!grounded)
+				{
+					move = fwalk * 2;
+				}
+			}
+		}
+		if (!fdash)
+		{
+			if (facingRight)
+			{
+				if (grounded)
+				{
+					move = bwalk * 2;
+				}
+				else if (!grounded)
+				{
+					move = bwalk * 2;
+				}
+			}
+			else if (!facingRight)
+			{
+				if (grounded)
+				{
+					move = bwalk * 2;
+				}
+				else if (!grounded)
+				{
+					move = bwalk * 2;
+				}
+			}
+		}
+		transform.Translate(move, transform.position.y, 0);
 		return transform.position;
 	}
 }
