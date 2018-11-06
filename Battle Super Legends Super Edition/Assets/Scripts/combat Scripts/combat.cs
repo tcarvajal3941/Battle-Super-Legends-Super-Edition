@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class combatController : MonoBehaviour {
+public class combat : MonoBehaviour {
 	public Vector3 myLocation;
 	public Transform lightAttackPrefab;
 	// Use this for initialization
 	void Start () {
-		
-
-
 	}
 	
 	// Update is called once per frame
