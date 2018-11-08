@@ -223,7 +223,7 @@ public class CombinedMove : MonoBehaviour {
 
 	private Vector2 getDash(bool grounded, bool facingRight, float fwalk, float bwalk, bool fdash)
 	{
-		float move;
+		float move = 0;
 		if (fdash)
 		{
 			if (facingRight)
