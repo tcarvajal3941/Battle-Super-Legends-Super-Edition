@@ -117,7 +117,7 @@ public class CombinedMove : MonoBehaviour {
 					}
 				}
 			}
-			else if (grounded == true)
+			if (grounded == true)
 			{
 				transform.Translate(lspeed, 0, 0);
 			}
@@ -141,7 +141,7 @@ public class CombinedMove : MonoBehaviour {
 					}
 				}
 			}
-			else if (grounded == true)
+			if (grounded == true)
 			{
 				transform.Translate(rspeed, 0, 0);
 			}
@@ -159,14 +159,14 @@ public class CombinedMove : MonoBehaviour {
 				jumpHeight = setJumpHeight;
 				transform.position = getGravity(jumpDirection, grounded);
 			}
-			if (inputDirection == 8)//Neutral Jump, steerable
+			else if (inputDirection == 8)//Neutral Jump, steerable
 			{
 				jumpDirection = 8;
 				grounded = false;
 				jumpHeight = setJumpHeight;
 				transform.position = getGravity(jumpDirection, grounded);
 			}
-			if (inputDirection == 9)//jump Forwards
+			else if (inputDirection == 9)//jump Forwards
 			{
 				jumpDirection = 9;
 				grounded = false;
@@ -211,7 +211,7 @@ public class CombinedMove : MonoBehaviour {
 			{
 				transform.Translate(rspeed * .85f, 0, 0);
 			}
-			if (jumpDirection == 7)
+			else if (jumpDirection == 7)
 			{
 				transform.Translate(lspeed * .85f, 0, 0);
 			}
@@ -223,7 +223,7 @@ public class CombinedMove : MonoBehaviour {
 
 	private Vector2 getDash(bool grounded, bool facingRight, float fwalk, float bwalk, bool fdash)
 	{
-		float move;
+		float move = 0;
 		if (fdash)
 		{
 			if (facingRight)
@@ -237,7 +237,7 @@ public class CombinedMove : MonoBehaviour {
 					move = fwalk * 2;
 				}
 			}
-			else if (!facingRight)
+			if (!facingRight)
 			{
 				if (grounded)
 				{
@@ -262,7 +262,7 @@ public class CombinedMove : MonoBehaviour {
 					move = bwalk * 2;
 				}
 			}
-			else if (!facingRight)
+			if (!facingRight)
 			{
 				if (grounded)
 				{

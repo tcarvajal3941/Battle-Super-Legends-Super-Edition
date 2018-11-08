@@ -183,7 +183,7 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 830713250}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -296,8 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myLocation: {x: 0, y: 0, z: 0}
-  lightAttackPrefab: {fileID: 4345916656824584, guid: e2080e5e5f5dd7345b6ebbdc5c5f4cb0,
-    type: 2}
+  lightAttackPrefab: {fileID: 0}
 --- !u!1 &1467440103
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,7 +487,7 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1789230087}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 0
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
