@@ -93,12 +93,12 @@ public class CombinedMove : MonoBehaviour {
 		if (facingRight == true)
 		{
 			lspeed = bwalk;
-			rspeed = fwalk * dashMultiplier;
+			rspeed = fwalk;
 		}
 		
 		if (facingRight == false)
 		{
-			lspeed = fwalk * dashMultiplier;
+			lspeed = fwalk;
 			rspeed = bwalk;
 		}
 
