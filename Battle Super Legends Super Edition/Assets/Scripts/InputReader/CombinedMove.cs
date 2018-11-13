@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CombinedMove : MonoBehaviour {
+
+	public float groundLevel = -0.8f;
+
 	public int  inputDirection;
 	public int  inputButton;
 
@@ -12,7 +15,7 @@ public class CombinedMove : MonoBehaviour {
 	float jumpHeight;
 	int   airOptions;
 	float gravity;
-	float dashMultiplier;
+	float dashSpeed;
 
 	float lspeed;
 	float rspeed;
@@ -28,6 +31,7 @@ public class CombinedMove : MonoBehaviour {
 
 		fwalk         = .05f;
 		bwalk         = .035f;
+		dashSpeed     = .1f;
 		setJumpHeight = .2f;
 		setAirOptions = 2;
 		gravity       = .01f;
@@ -191,9 +195,9 @@ public class CombinedMove : MonoBehaviour {
 		}
 
 		//sets ground limit and resets air options
-		if (transform.position.y <= -0.8)
+		if (transform.position.y <= groundLevel)
 		{
-			transform.position = new Vector2(transform.position.x, 0);
+			transform.position = new Vector2(transform.position.x, groundLevel);
 			grounded = true;
 			jumpHeight = setJumpHeight;
 			airOptions = setAirOptions;
@@ -223,29 +227,28 @@ public class CombinedMove : MonoBehaviour {
 
 	private Vector2 getDash(bool grounded, bool facingRight, float fwalk, float bwalk, bool fdash)
 	{
-		float move = 0;
 		if (fdash)
 		{
 			if (facingRight)
 			{
 				if (grounded)
 				{
-					move = fwalk * 2;
+					
 				}
 				else if (!grounded)
 				{
-					move = fwalk * 2;
+					
 				}
 			}
 			if (!facingRight)
 			{
 				if (grounded)
 				{
-					move = fwalk * 2;
+					
 				}
 				else if (!grounded)
 				{
-					move = fwalk * 2;
+					
 				}
 			}
 		}
@@ -255,26 +258,26 @@ public class CombinedMove : MonoBehaviour {
 			{
 				if (grounded)
 				{
-					move = bwalk * 2;
+					
 				}
 				else if (!grounded)
 				{
-					move = bwalk * 2;
+					
 				}
 			}
 			if (!facingRight)
 			{
 				if (grounded)
 				{
-					move = bwalk * 2;
+					
 				}
 				else if (!grounded)
 				{
-					move = bwalk * 2;
+					
 				}
 			}
 		}
-		transform.Translate(move, transform.position.y, 0);
+		transform.Translate(dashSpeed, transform.position.y, 0);
 		return transform.position;
 	}
 }
