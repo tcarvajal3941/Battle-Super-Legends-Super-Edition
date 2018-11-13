@@ -193,7 +193,7 @@ public class CombinedMove : MonoBehaviour {
 		//sets ground limit and resets air options
 		if (transform.position.y <= -0.8)
 		{
-			transform.position = new Vector2(transform.position.x, 0);
+			transform.position = new Vector2(transform.position.x, -.8f);
 			grounded = true;
 			jumpHeight = setJumpHeight;
 			airOptions = setAirOptions;
