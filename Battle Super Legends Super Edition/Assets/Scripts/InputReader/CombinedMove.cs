@@ -17,7 +17,7 @@ public class CombinedMove : MonoBehaviour {
 	float gravity;
 	float dashSpeed;
 
-	float lspeed;
+	float walkspeed;
 	float rspeed;
 	bool  grounded;
 	int   jumpDirection = 0;
@@ -27,257 +27,90 @@ public class CombinedMove : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		facingRight = true;
-		inputDirection = 5;
-
-		fwalk         = .05f;
-		bwalk         = .035f;
-		dashSpeed     = .1f;
-		setJumpHeight = .2f;
-		setAirOptions = 2;
-		gravity       = .01f;
-
-		bwalk       = bwalk*-1;
-		facingRight = true;
-		grounded    = true;
+		walkspeed = .75f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		getInput();
-		Debug.Log("Input Direction: " + inputDirection);
-	}
-
-	public void getInput()
-	{
-		inputDirection = 5;
-		//walk to the left
+		//move left
 		if (Input.GetKey(KeybindingsScript.Kb.left))
 		{
-			inputDirection = 4;
-			Debug.Log(inputDirection);
-		}
-		//walk to the right
-		if (Input.GetKey(KeybindingsScript.Kb.right))
-		{
-			inputDirection = 6;
+			if (grounded == true)
+			{
+				transform.Translate(walkspeed*-1, 0, 0);
+			}
+			else if (grounded == false && jumpDirection == 8)
+			{
+            	transform.Translate(walkspeed*-.5f, 0, 0);
+			}
+			Debug.Log("Moving Left");
 		}
 
-		//grounded jump
+		//move right
+		if (Input.GetKey(KeybindingsScript.Kb.right))
+		{
+			if (grounded == true)
+			{
+				transform.Translate(walkspeed, 0, 0);
+			}
+			else if (grounded == false && jumpDirection == 8)
+			{
+            	transform.Translate(walkspeed*.5f, 0, 0);
+			}
+			Debug.Log("Moving Right");
+		}
+		
+		//jump
 		if (Input.GetKeyDown(KeybindingsScript.Kb.jump))
 		{
-			inputDirection = 8;
+			jumpDirection = 8;
+			grounded = false;
+			jumpHeight = setJumpHeight;
+			transform.position = getGravity(jumpDirection, grounded);
 		}
 		if (Input.GetKeyDown(KeybindingsScript.Kb.jump) && Input.GetKey(KeybindingsScript.Kb.left))
 		{
-			inputDirection = 7;
+			jumpDirection = 7;
+			grounded = false;
+			jumpHeight = setJumpHeight;
+			transform.position = getGravity(jumpDirection, grounded);
 		}
 		if (Input.GetKeyDown(KeybindingsScript.Kb.jump) && Input.GetKey(KeybindingsScript.Kb.right))
 		{
-			inputDirection = 9;
-		}
-		
-		//crouch
-		if (Input.GetKey(KeybindingsScript.Kb.crouch))
-		{
-			inputDirection = 2;
-		}
-		if (Input.GetKey(KeybindingsScript.Kb.crouch) && Input.GetKey(KeybindingsScript.Kb.left))
-		{
-			inputDirection = 1;
-		}
-		if (Input.GetKey(KeybindingsScript.Kb.crouch) && Input.GetKey(KeybindingsScript.Kb.right))
-		{
-			inputDirection = 3;
-		}
-		Move(inputDirection);
-	}
-
-	// Update is called once per frame
-	public void Move (int inputDirection) {
-		if (facingRight == true)
-		{
-			lspeed = bwalk;
-			rspeed = fwalk;
-		}
-		
-		if (facingRight == false)
-		{
-			lspeed = fwalk;
-			rspeed = bwalk;
-		}
-
-		if (inputDirection == 4)//walk Backwards
-		{
-			for (int i = 0; i > 8; i++)
-			{
-				if (inputDirection == 5)
-				{
-					for (int j = 0; j > 8; j++)
-					{
-						if (inputDirection == 4)
-						{
-							transform.position = getDash(grounded, facingRight, fwalk, bwalk, false);
-						}
-					}
-				}
-			}
-			if (grounded == true)
-			{
-				transform.Translate(lspeed, 0, 0);
-			}
-			else if (grounded == false && jumpDirection == 8)
-			{
-            	transform.Translate(lspeed*.5f, 0, 0);
-			}
-		}
-		if (inputDirection == 6)//walk Forwards
-		{
-			for (int i = 0; i > 8; i++)
-			{
-				if (inputDirection == 5)
-				{
-					for (int j = 0; j > 8; j++)
-					{
-						if (inputDirection == 6)
-						{
-							transform.position = getDash(grounded, facingRight, fwalk, bwalk, true);
-						}
-					}
-				}
-			}
-			if (grounded == true)
-			{
-				transform.Translate(rspeed, 0, 0);
-			}
-			else if (grounded == false && jumpDirection == 8)
-			{
-				transform.Translate(rspeed*.5f, 0, 0);
-			}
-		}
-		if (grounded == true || grounded == false && airOptions > 0)
-		{
-			if (inputDirection == 7)//jump Backwards
-			{
-				jumpDirection = 7;
-				grounded = false;
-				jumpHeight = setJumpHeight;
-				transform.position = getGravity(jumpDirection, grounded);
-			}
-			else if (inputDirection == 8)//Neutral Jump, steerable
-			{
-				jumpDirection = 8;
-				grounded = false;
-				jumpHeight = setJumpHeight;
-				transform.position = getGravity(jumpDirection, grounded);
-			}
-			else if (inputDirection == 9)//jump Forwards
-			{
-				jumpDirection = 9;
-				grounded = false;
-				jumpHeight = setJumpHeight;
-				transform.position = getGravity(jumpDirection, grounded);
-			}
-			airOptions--;
-		}
-
-		//activates gravity if airborn
-		if (grounded == false)
-		{
+			jumpDirection = 9;
+			grounded = false;
+			jumpHeight = setJumpHeight;
 			transform.position = getGravity(jumpDirection, grounded);
 		}
 
-		//crouching
-		if (inputDirection == 1 || 
-			inputDirection == 2 || inputDirection == 3)
+		//activate gravity if airborn
+		if (!grounded)
 		{
-			//crouch
-			
-		}
-
-		//sets ground limit and resets air options
-		if (transform.position.y <= groundLevel)
-		{
-			transform.position = new Vector2(transform.position.x, groundLevel);
-			grounded = true;
+			transform.position = getGravity(jumpDirection, grounded);
+		} else {
 			jumpHeight = setJumpHeight;
 			airOptions = setAirOptions;
 			jumpDirection = 0;
 		}
 	}
 
-	//calculates gravity
+	//calculate gravity
 	private Vector2 getGravity(int jumpDirection, bool grounded)
 	{
-		if (grounded == false)
+		if (!grounded)
 		{
 			gravity = .01f;
 			if (jumpDirection == 9)
 			{
-				transform.Translate(rspeed * .85f, 0, 0);
+				transform.Translate(walkspeed*.85f, 0, 0);
 			}
 			else if (jumpDirection == 7)
 			{
-				transform.Translate(lspeed * .85f, 0, 0);
+				transform.Translate(walkspeed*-.85f, 0, 0);
 			}
 			transform.Translate(0, jumpHeight, 0);
 			jumpHeight -= gravity;
 		}
-		return transform.position;
-	}
-
-	private Vector2 getDash(bool grounded, bool facingRight, float fwalk, float bwalk, bool fdash)
-	{
-		if (fdash)
-		{
-			if (facingRight)
-			{
-				if (grounded)
-				{
-					
-				}
-				else if (!grounded)
-				{
-					
-				}
-			}
-			if (!facingRight)
-			{
-				if (grounded)
-				{
-					
-				}
-				else if (!grounded)
-				{
-					
-				}
-			}
-		}
-		if (!fdash)
-		{
-			if (facingRight)
-			{
-				if (grounded)
-				{
-					
-				}
-				else if (!grounded)
-				{
-					
-				}
-			}
-			if (!facingRight)
-			{
-				if (grounded)
-				{
-					
-				}
-				else if (!grounded)
-				{
-					
-				}
-			}
-		}
-		transform.Translate(dashSpeed, transform.position.y, 0);
 		return transform.position;
 	}
 }
