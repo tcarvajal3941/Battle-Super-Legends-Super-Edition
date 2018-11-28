@@ -64,7 +64,6 @@ public class settingsController : MonoBehaviour {
 							options.Add(option);
 				}
 				checkDuplicates();
-				checkDuplicates();
 				resolutionDropdown.AddOptions(options);
 				for(int k = 0; k< options.Count; k++){
 					if (System.Convert.ToInt32(options[k].Substring(0 , 4)) == PlayerPrefs.GetInt("ResolutionWidth") && System.Convert.ToInt32(options[k].Substring(7)) == PlayerPrefs.GetInt("ResolutionHeight")){
@@ -77,10 +76,12 @@ public class settingsController : MonoBehaviour {
 	}
 
 	void checkDuplicates(){
-		for(int i = 0; i < options.Count - 1; i++){
-			for(int j = i + 1; j < options.Count; j++){
-				if(options[i] == options[j]){
-					options.RemoveAt(j);
+		for(int f = 0; f < 2; f++){
+			for(int i = 0; i < options.Count - 1; i++){
+				for(int j = i + 1; j < options.Count; j++){
+					if(options[i] == options[j]){
+						options.RemoveAt(j);
+					}
 				}
 			}
 		}
