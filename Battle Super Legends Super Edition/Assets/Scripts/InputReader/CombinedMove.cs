@@ -4,34 +4,41 @@ using UnityEngine;
 
 public class CombinedMove : MonoBehaviour {
 
-	public float groundLevel = -0.8f;
-
-	public int  inputDirection;
-	public int  inputButton;
-
-	float fwalk; //pull from other scripts
-	float bwalk; //pull from other scripts
-	bool  facingRight; //pull from other scripts
+	bool  steerable;
+	bool  setSteerable;
 	float jumpHeight;
 	int   airOptions;
 	float gravity;
 	float dashSpeed;
-
-	float walkspeed;
-	float rspeed;
+	float walkspeed = .75f;
 	bool  grounded;
 	int   jumpDirection = 0;
 	float setJumpHeight;
 	int   setAirOptions;
 
+	bool  lightAttack;
+
 	// Use this for initialization
-	void Start () {
-		facingRight = true;
+	void Start () 
+	{
+		setSteerable = false;
+		setJumpHeight = 5;
+		setAirOptions = 1;
+		jumpHeight = setJumpHeight;
+		airOptions = setAirOptions;
 		walkspeed = .75f;
+		dashSpeed = walkspeed * 2;
+		grounded = true;
+		gravity = .01f;
+		jumpDirection = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKeyDown(KeybindingsScript.Kb.lightAttack))
+		{
+			lightAttack = true;
+		}
 		//move left
 		if (Input.GetKey(KeybindingsScript.Kb.left))
 		{
@@ -39,7 +46,7 @@ public class CombinedMove : MonoBehaviour {
 			{
 				transform.Translate(walkspeed*-1, 0, 0);
 			}
-			else if (grounded == false && jumpDirection == 8)
+			else if (grounded == false && steerable)
 			{
             	transform.Translate(walkspeed*-.5f, 0, 0);
 			}
@@ -53,7 +60,7 @@ public class CombinedMove : MonoBehaviour {
 			{
 				transform.Translate(walkspeed, 0, 0);
 			}
-			else if (grounded == false && jumpDirection == 8)
+			else if (grounded == false && steerable)
 			{
             	transform.Translate(walkspeed*.5f, 0, 0);
 			}
@@ -64,23 +71,29 @@ public class CombinedMove : MonoBehaviour {
 		if (Input.GetKeyDown(KeybindingsScript.Kb.jump))
 		{
 			jumpDirection = 8;
+			steerable = true;
 			grounded = false;
 			jumpHeight = setJumpHeight;
 			transform.position = getGravity(jumpDirection, grounded);
+			jumpDirection = 0;
 		}
 		if (Input.GetKeyDown(KeybindingsScript.Kb.jump) && Input.GetKey(KeybindingsScript.Kb.left))
 		{
 			jumpDirection = 7;
+			steerable = setSteerable;
 			grounded = false;
 			jumpHeight = setJumpHeight;
 			transform.position = getGravity(jumpDirection, grounded);
+			jumpDirection = 0;
 		}
 		if (Input.GetKeyDown(KeybindingsScript.Kb.jump) && Input.GetKey(KeybindingsScript.Kb.right))
 		{
 			jumpDirection = 9;
+			steerable = setSteerable;
 			grounded = false;
 			jumpHeight = setJumpHeight;
 			transform.position = getGravity(jumpDirection, grounded);
+			jumpDirection = 0;
 		}
 
 		//activate gravity if airborn
@@ -88,6 +101,8 @@ public class CombinedMove : MonoBehaviour {
 		{
 			transform.position = getGravity(jumpDirection, grounded);
 		} else {
+			transform.position = new Vector2(transform.position.x, -.8f);
+			grounded = true;
 			jumpHeight = setJumpHeight;
 			airOptions = setAirOptions;
 			jumpDirection = 0;
