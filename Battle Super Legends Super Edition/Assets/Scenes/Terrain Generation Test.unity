@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 2041771459}
   - component: {fileID: 2041771458}
   m_Layer: 0
-  m_Name: MapGenerator
+  m_Name: Game Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,18 +137,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 2041771457}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21a566f43e427ea4a832dbfacf2e6f2c, type: 3}
+  m_Script: {fileID: 11500000, guid: cf499737356704f48918d6e72363c1ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundTop: {fileID: 1699922812111120, guid: 6c54cbd9aeb8d7d45984bdd4e4f57eb2, type: 2}
-  spikes: {fileID: 1898095198751836, guid: b2af9bd3250cafa4a9e5d1d76b3f8310, type: 2}
-  bridge: {fileID: 1932041381778742, guid: 349414f840b74e642a553c1d5fd914b7, type: 2}
-  minPlatformSize: 2
-  maxPlatformSize: 12
-  maxHazardSize: 3
-  platforms: 100
-  hazardChance: 0.5
-  bridgeChance: 0.1
+  minRooms: 0
+  maxRooms: 0
+  minDistanceBetweenRooms: 0
+  maxDistanceBetweenRooms: 0
+  maxDrop: -3
+  maxJump: 3
+  currentLevel: 0
+  corner: {fileID: 1932041381778742, guid: 349414f840b74e642a553c1d5fd914b7, type: 2}
+  ground: {fileID: 1699922812111120, guid: 6c54cbd9aeb8d7d45984bdd4e4f57eb2, type: 2}
 --- !u!4 &2041771459
 Transform:
   m_ObjectHideFlags: 0
