@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CombinedMove : MonoBehaviour {
+	public static CombinedMove Cm;
+
+	Animator   animator;
+	int        action;
+	public int moveDirection;
+
+	private bool pressedOnce;
+    private float time;
+    private float timerLength;
 
 	bool  steerable;
 	bool  setSteerable;
@@ -10,45 +19,69 @@ public class CombinedMove : MonoBehaviour {
 	int   airOptions;
 	float gravity;
 	float dashSpeed;
-	float walkspeed = .75f;
+	float walkspeed;
 	bool  grounded;
-	int   jumpDirection = 0;
+	int   jumpDirection;
 	float setJumpHeight;
 	int   setAirOptions;
-
-	bool  lightAttack;
 
 	// Use this for initialization
 	void Start () 
 	{
+		animator = this.GetComponent<Animator>();
+
 		setSteerable = false;
-		setJumpHeight = 5;
+		setJumpHeight = .3f;
 		setAirOptions = 1;
 		jumpHeight = setJumpHeight;
 		airOptions = setAirOptions;
-		walkspeed = .75f;
-		dashSpeed = walkspeed * 2;
+		walkspeed = .12f;
 		grounded = true;
-		gravity = .01f;
+		gravity = .02f;
 		jumpDirection = 0;
+
+		pressedOnce = false;
+        time = 0;
+        timerLength = 0.5f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		animator.SetBool("grounded", grounded);
+		action = 0;
+		animator.SetInteger("action", action);
+		moveDirection = 0;
+		animator.SetInteger("moveDirection", moveDirection);
+
+		//light attack
 		if (Input.GetKeyDown(KeybindingsScript.Kb.lightAttack))
 		{
-			lightAttack = true;
+			action = 1;
+			animator.SetInteger("action", action);
+			Debug.Log("Light Attack Pressed");
 		}
+		//heavy attack
+		if (Input.GetKeyDown(KeybindingsScript.Kb.mediumAttack))
+		{
+			action = 2;
+			animator.SetInteger("action", action);
+			Debug.Log("Medium Attack Pressed");
+		}
+
 		//move left
 		if (Input.GetKey(KeybindingsScript.Kb.left))
 		{
-			if (grounded == true)
+			
+			int moveDirection = -1;
+			if (grounded)
 			{
+				animator.SetInteger("moveDirection", moveDirection);
 				transform.Translate(walkspeed*-1, 0, 0);
 			}
-			else if (grounded == false && steerable)
+			else if (!grounded)
 			{
-            	transform.Translate(walkspeed*-.5f, 0, 0);
+				animator.SetInteger("moveDirection", moveDirection);
+				transform.Translate(walkspeed*-.85f, 0, 0);
 			}
 			Debug.Log("Moving Left");
 		}
@@ -56,13 +89,16 @@ public class CombinedMove : MonoBehaviour {
 		//move right
 		if (Input.GetKey(KeybindingsScript.Kb.right))
 		{
-			if (grounded == true)
+			int moveDirection = 1;
+			if (grounded)
 			{
+				animator.SetInteger("moveDirection", moveDirection);
 				transform.Translate(walkspeed, 0, 0);
 			}
-			else if (grounded == false && steerable)
+			else if (!grounded)
 			{
-            	transform.Translate(walkspeed*.5f, 0, 0);
+				animator.SetInteger("moveDirection", moveDirection);
+				transform.Translate(walkspeed*.85f, 0, 0);
 			}
 			Debug.Log("Moving Right");
 		}
@@ -70,39 +106,24 @@ public class CombinedMove : MonoBehaviour {
 		//jump
 		if (Input.GetKeyDown(KeybindingsScript.Kb.jump))
 		{
-			jumpDirection = 8;
-			steerable = true;
-			grounded = false;
-			jumpHeight = setJumpHeight;
-			transform.position = getGravity(jumpDirection, grounded);
-			jumpDirection = 0;
-		}
-		if (Input.GetKeyDown(KeybindingsScript.Kb.jump) && Input.GetKey(KeybindingsScript.Kb.left))
-		{
-			jumpDirection = 7;
-			steerable = setSteerable;
-			grounded = false;
-			jumpHeight = setJumpHeight;
-			transform.position = getGravity(jumpDirection, grounded);
-			jumpDirection = 0;
-		}
-		if (Input.GetKeyDown(KeybindingsScript.Kb.jump) && Input.GetKey(KeybindingsScript.Kb.right))
-		{
-			jumpDirection = 9;
-			steerable = setSteerable;
-			grounded = false;
-			jumpHeight = setJumpHeight;
-			transform.position = getGravity(jumpDirection, grounded);
-			jumpDirection = 0;
+			if (grounded)			
+				transform.position = getJump();
+			else if (airOptions > 0)
+			{
+				airOptions--;
+				transform.position = getJump();
+			}
 		}
 
 		//activate gravity if airborn
-		if (!grounded)
+		if (!grounded && transform.position.y > -.8f)
 		{
 			transform.position = getGravity(jumpDirection, grounded);
-		} else {
-			transform.position = new Vector2(transform.position.x, -.8f);
+		}
+		if (transform.position.y <= -.8f) {
 			grounded = true;
+			animator.SetBool("grounded", grounded);
+			transform.position = new Vector2(transform.position.x, -.8f);
 			jumpHeight = setJumpHeight;
 			airOptions = setAirOptions;
 			jumpDirection = 0;
@@ -114,18 +135,20 @@ public class CombinedMove : MonoBehaviour {
 	{
 		if (!grounded)
 		{
-			gravity = .01f;
-			if (jumpDirection == 9)
-			{
-				transform.Translate(walkspeed*.85f, 0, 0);
-			}
-			else if (jumpDirection == 7)
-			{
-				transform.Translate(walkspeed*-.85f, 0, 0);
-			}
 			transform.Translate(0, jumpHeight, 0);
 			jumpHeight -= gravity;
 		}
+		return transform.position;
+	}
+
+	public Vector2 getJump()
+	{
+		animator.SetInteger("moveDirection", 2);
+		jumpHeight = setJumpHeight;
+		grounded = false;
+		transform.position = getGravity(jumpDirection, grounded);
+
+		Debug.Log("Jumping");
 		return transform.position;
 	}
 }
