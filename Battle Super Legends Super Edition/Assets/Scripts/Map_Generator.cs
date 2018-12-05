@@ -18,22 +18,16 @@ public class Map_Generator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		numberOfRooms = Random.Range(11,20);
-		startRoomNum  = Random.Range(0,3);
-		endRoomNum = Random.Range(0,3);
 
-		for(int i = 0 ; i< Rooms.GetLength(0); i++){
-			for(int j = 0; j < Rooms.GetLength(1); j++){
-				Rooms[i,j] = 0;
-				
-			}
-		}
-		Rooms[startRoomNum,0] = -1;
-		Rooms[endRoomNum,7] = -2;
 		PlaceRooms();
 	}
 	
 	private void PlaceRooms(){
-		
+		//0 is up
+		//1 is right
+		//2 is down
+		int nextRoomDirection; //sets to a random number between 0 and 2
+
 	}
 	// Update is called once per frame
 	void Update () {
