@@ -113,50 +113,46 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &2041771457
+--- !u!1 &722803906
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2041771459}
-  - component: {fileID: 2041771458}
+  - component: {fileID: 722803908}
+  - component: {fileID: 722803907}
   m_Layer: 0
-  m_Name: Game Manager
+  m_Name: Map Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2041771458
+--- !u!114 &722803907
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2041771457}
+  m_GameObject: {fileID: 722803906}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf499737356704f48918d6e72363c1ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 035f2ac9a0b707744b94dd677bea00df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minRooms: 0
-  maxRooms: 0
-  minDistanceBetweenRooms: 0
-  maxDistanceBetweenRooms: 0
-  maxDrop: -3
-  maxJump: 3
-  currentLevel: 0
-  corner: {fileID: 1932041381778742, guid: 349414f840b74e642a553c1d5fd914b7, type: 2}
-  ground: {fileID: 1699922812111120, guid: 6c54cbd9aeb8d7d45984bdd4e4f57eb2, type: 2}
---- !u!4 &2041771459
+  room1: {fileID: 21300000, guid: 162bf94f233eb224db31324c9dd35069, type: 3}
+  room2: {fileID: 21300000, guid: 3580520d55ef655429afdbd47cd58e86, type: 3}
+  room2WithTop: {fileID: 21300000, guid: fa6c932b2d788284eaf278d18266380d, type: 3}
+  room3: {fileID: 21300000, guid: ff43031d47e7cc74f8835a998345df53, type: 3}
+  numberOfRooms: 12
+--- !u!4 &722803908
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2041771457}
+  m_GameObject: {fileID: 722803906}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.449724, y: -0.6736883, z: -0.7017482}
+  m_LocalPosition: {x: 1.2577517, y: -0.53537464, z: -0.76497823}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
