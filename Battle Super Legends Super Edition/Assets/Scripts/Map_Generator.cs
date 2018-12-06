@@ -18,8 +18,9 @@ public class MapGenerator : MonoBehaviour {
 	private int endRoomNum; 
 	// Use this for initialization
 	void Start () {
+		
 		numberOfRooms = Random.Range(11,20);
-
+		Debug.Log("Number of Rooms = " + numberOfRooms);
 		GenerateMap();
 		AssignRoomCode();
 	}
@@ -50,24 +51,70 @@ public class MapGenerator : MonoBehaviour {
 	}
 
 	private void AssignRoomCode() {
-		roomExitType[0] = "Z";
-		roomExitType[numberOfRooms-1] = "Y";
+		roomExitType.Add("Z");
 		for (int i = 1; i < numberOfRooms-1; i++){
-			if(spawnDirections[i-1] == 0 && spawnDirections[i+1] == 0){
-				roomExitType[i] = "A";
+
+			if(spawnDirections[i-1] == 0 && spawnDirections[i+1] == 0 && spawnDirections[i] == 0){
+				roomExitType.Add("A");
 			}
-			else if(spawnDirections[i-1] == 0 && spawnDirections[i+1] == 1){
-				roomExitType[i] = "D";
+			else if (spawnDirections[i-1] == 2 && spawnDirections[i+1] == 2 && spawnDirections[i] == 0){
+				roomExitType.Add("A");
 			}
-			else if(spawnDirections[i-1] == 1 && spawnDirections[i+1] == 0){
-				roomExitType[i] = "F";
+			else if (spawnDirections[i-1] == 1 && spawnDirections[i+1] == 0 && spawnDirections[i] == 0){
+				roomExitType.Add("A");
 			}
-			else if(spawnDirections[i-1] == 1 && spawnDirections[i+1] == 1){
-				roomExitType[i] = "C";
+
+
+
+			else if (spawnDirections[i-1] == 2 && spawnDirections[i+1] == 1 && spawnDirections[i] == 2) {
+				roomExitType.Add("B");
 			}
-			else if (spawnDirections[i-1] == 1 && spawnDirections[i+1] ==2){
-				roomExitType[i] = "E";
+			else if (spawnDirections[i-1] == 1 && spawnDirections[i+1] == 1 && spawnDirections[i] == 2){
+				roomExitType.Add("B");
 			}
+
+
+
+			else if(spawnDirections[i-1] == 1 && spawnDirections[i+1] == 1 && spawnDirections[i] == 1){
+				roomExitType.Add("C");
+			}
+			else if(spawnDirections[i-1] == 0 && spawnDirections[i+1] == 1 && spawnDirections[i] == 1){
+				roomExitType.Add("C");
+			}
+			else if(spawnDirections[i-1] == 2 && spawnDirections[i+1] == 1 && spawnDirections[i] == 1){
+				roomExitType.Add("C");
+			}
+
+
+
+			else if(spawnDirections[i-1] == 0 && spawnDirections[i+1] == 1 && spawnDirections[i] == 0){
+				roomExitType.Add("D");
+			}
+			else if(spawnDirections[i-1] == 1 && spawnDirections[i+1] == 1 && spawnDirections[i] == 0){
+				roomExitType.Add("D");
+			}
+
+
+
+			else if (spawnDirections[i-1] == 1 && spawnDirections[i+1] == 2 && spawnDirections[i] == 1){
+				roomExitType.Add("E");
+			}
+			else if (spawnDirections[i-1] == 2 && spawnDirections[i+1] == 2 && spawnDirections[i] == 1){
+				roomExitType.Add("E");
+			}
+
+
+
+			else if(spawnDirections[i-1] == 1 && spawnDirections[i+1] == 0 && spawnDirections[i] == 1){
+				roomExitType.Add("F");
+			}
+			else if(spawnDirections[i-1] == 0 && spawnDirections[i+1] == 0 && spawnDirections[i] == 1){
+				roomExitType.Add("F");
+			}
+		}
+		roomExitType.Add("Y");
+		foreach(string x in roomExitType){
+			Debug.Log(x);
 		}
 	}
 	// Update is called once per frame
