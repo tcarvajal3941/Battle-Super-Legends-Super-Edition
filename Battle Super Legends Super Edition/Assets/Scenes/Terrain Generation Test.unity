@@ -140,10 +140,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 035f2ac9a0b707744b94dd677bea00df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  room1: {fileID: 21300000, guid: 162bf94f233eb224db31324c9dd35069, type: 3}
-  room2: {fileID: 21300000, guid: 3580520d55ef655429afdbd47cd58e86, type: 3}
-  room2WithTop: {fileID: 21300000, guid: fa6c932b2d788284eaf278d18266380d, type: 3}
-  room3: {fileID: 21300000, guid: ff43031d47e7cc74f8835a998345df53, type: 3}
+  spawnDirections: 
+  roomExitType: []
+  roomA: {fileID: 21300000, guid: fa97f2bf329e6324380332515bcb8157, type: 3}
+  roomB: {fileID: 21300000, guid: a255dfce1b4dd614786b04faba840656, type: 3}
+  roomC: {fileID: 21300000, guid: d105487c031a5ca4f97c0d08507bb0ad, type: 3}
+  roomD: {fileID: 21300000, guid: 95554c9ce43640648a6a5626d7aa4b6b, type: 3}
+  roomE: {fileID: 21300000, guid: 9f116d26bb5552b4daabba43fa109bce, type: 3}
+  roomF: {fileID: 21300000, guid: a7d0dfaf61218014cb877eca4defa217, type: 3}
+  roomLeftExitY: {fileID: 21300000, guid: 241849cd20f5b714c980871dc05e6672, type: 3}
+  roomRightExitZ: {fileID: 21300000, guid: 36dc43ef8fa95c941b17b3263ce9e811, type: 3}
+  roomBottomExitYZ: {fileID: 21300000, guid: 16c3169e6e5a7584f8ed643e2b19fe96, type: 3}
+  roomTopExitYZ: {fileID: 21300000, guid: ea12b05c65877f64ea69bf03014a46c4, type: 3}
   numberOfRooms: 12
 --- !u!4 &722803908
 Transform:

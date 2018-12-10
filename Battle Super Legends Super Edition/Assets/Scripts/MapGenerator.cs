@@ -6,10 +6,18 @@ public class MapGenerator : MonoBehaviour {
 
 	public List <int> spawnDirections = new List<int>();
 	public List <string> roomExitType = new List<string>();	
-	public Sprite room1;
-	public Sprite room2;
-	public Sprite room2WithTop;
-	public Sprite room3;
+	public Sprite roomA;
+	public Sprite roomB;
+	public Sprite roomC;
+	public Sprite roomD;
+
+	public Sprite roomE;
+	public GameObject roomF;
+
+	public GameObject roomLeftExitY;
+	public GameObject roomRightExitZ;
+	public GameObject roomBottomExitYZ;
+	public GameObject roomTopExitYZ;
 
 	public int numberOfRooms;
 
@@ -120,7 +128,25 @@ public class MapGenerator : MonoBehaviour {
 	}
 	
 	private void PlaceRooms(){
+		int xDisplacement = 0;
+		int yDisplacement = 0;
 		
+		for(int i=0; i < numberOfRooms-1; i++){
+			if(i==0){
+				if(spawnDirections[i] == 0){
+					Instantiate(roomTopExitYZ, new Vector2(xDisplacement,yDisplacement), Quaternion.identity);
+					yDisplacement += 10;
+				}
+				else if (spawnDirections[i] == 1){
+					Instantiate(roomRightExitZ, new Vector2(xDisplacement, yDisplacement), Quaternion.identity);
+					xDisplacement =+ 10;
+				}
+				else{
+					Instantiate(roomBottomExitYZ, new Vector2(xDisplacement, yDisplacement), Quaternion.identity);
+					yDisplacement -= 10;
+				}
+			}
+		}
 	}
 	void Update () {
 		
