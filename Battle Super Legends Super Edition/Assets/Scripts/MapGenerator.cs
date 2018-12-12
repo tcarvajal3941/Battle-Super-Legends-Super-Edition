@@ -19,7 +19,7 @@ public class MapGenerator : MonoBehaviour {
 	public GameObject roomBottomExitYZ;
 	public GameObject roomTopExitYZ;
 
-	public int numberOfRooms;
+	private int numberOfRooms;
 
 	private int startRoomNum;
 	
@@ -31,7 +31,7 @@ public class MapGenerator : MonoBehaviour {
 		Debug.Log("Number of Rooms = " + numberOfRooms);
 		GenerateMap();
 		AssignRoomCode();
-		PlaceRooms();
+		//PlaceRooms();
 	}
 	
 	private void GenerateMap(){
@@ -39,7 +39,7 @@ public class MapGenerator : MonoBehaviour {
 		//1 is right
 		//2 is down
 		int nextRoomDirection;  //sets to a random number between 0 and 2
-		int previousRoomDirection = -1;
+		int previousRoomDirection = 1;
 		for(int i = 0; i < numberOfRooms; i++){
 			if(previousRoomDirection == 0){
 				nextRoomDirection = Random.Range(0,2);
@@ -55,11 +55,14 @@ public class MapGenerator : MonoBehaviour {
 			
 
 		}
+		foreach(int x in spawnDirections){
+			Debug.Log(x);
+		}
 
 	}
 
 	private void AssignRoomCode() {
-		roomExitType.Add("Z");
+
 		for (int i = 1; i < numberOfRooms-1; i++){
 
 			if(spawnDirections[i-1] == 0 && spawnDirections[i+1] == 0 && spawnDirections[i] == 0){
@@ -121,75 +124,65 @@ public class MapGenerator : MonoBehaviour {
 			}
 		}
 		roomExitType.Add("Y");
+		foreach(string x in roomExitType){
+			Debug.Log(x);
+		}
 	}
 	
 	private void PlaceRooms(){
-		int xDisplacement = 0;
+		int xDisplacement = 10;
 		int yDisplacement = 0;
 		Debug.Log(numberOfRooms + " number of rooms");
 		Debug.Log(spawnDirections.Count);
 		Debug.Log(roomExitType.Count);
-		
-		for(int i=0; i < numberOfRooms-1; i++){
+		Instantiate(roomRightExitZ, new Vector2(0,0), Quaternion.identity);
 
-			if(roomExitType[i] == "Z" && spawnDirections[i] == 0){
-				Instantiate(roomTopExitYZ, new Vector2(xDisplacement,yDisplacement), Quaternion.identity);
-				yDisplacement += 10;
-			}
-			else if ( roomExitType[i] == "Z" && spawnDirections[i] == 1){
-				Instantiate(roomRightExitZ, new Vector2(xDisplacement, yDisplacement), Quaternion.identity);
-				xDisplacement += 10;
-			}
-			else if (roomExitType[i] == "Z" && spawnDirections[i] == 2){
-				Instantiate(roomBottomExitYZ, new Vector2(xDisplacement, yDisplacement), Quaternion.identity);
-				yDisplacement -= 10;
-			}
-		
-			else if(roomExitType[i] == "A"){
+			for(int i=0; i < numberOfRooms; i++){
+				
+				if(roomExitType[i] == "A"){
 				Instantiate(roomA, new Vector2(xDisplacement, yDisplacement), Quaternion.identity);
 					if(spawnDirections[i] == 0){
 						yDisplacement += 10;
 					} else {
 						yDisplacement -= 10;
 					}
-			}
-			else if(roomExitType[i] == "B"){
-				Instantiate(roomB, new Vector2(xDisplacement, yDisplacement), Quaternion.identity);
-				xDisplacement += 10;
-			}
-			else if(roomExitType[i] == "C"){
-				Instantiate(roomC, new Vector2(xDisplacement, yDisplacement), Quaternion.identity);
-				xDisplacement += 10;
-			}
-			else if (roomExitType[i] == "D"){
-				Instantiate(roomD, new Vector2(xDisplacement, yDisplacement), Quaternion.identity);
-				xDisplacement += 10;
-			}
-			else if (roomExitType[i] == "E"){
-				Instantiate(roomE, new Vector2(xDisplacement, yDisplacement), Quaternion.identity);
-				yDisplacement -= 10;
-			}
-			else if (roomExitType[i] == "F"){
-				Instantiate(roomF, new Vector2(xDisplacement, yDisplacement), Quaternion.identity);
-				yDisplacement+= 10;
-			}
-			else if(roomExitType[i] == "Y" && spawnDirections[i-1] == 0) {
-				Instantiate(roomBottomExitYZ, new Vector2(xDisplacement, yDisplacement), Quaternion.identity);
-			}
-			else if (roomExitType[i] == "Y" && spawnDirections[i-1] == 1){
-				Instantiate(roomLeftExitY, new Vector2(xDisplacement, yDisplacement), Quaternion.identity);
-			}
-			else if (roomExitType[i] == "Y" && spawnDirections[i-1] == 2){
-				Instantiate(roomTopExitYZ, new Vector2(xDisplacement, yDisplacement), Quaternion.identity);
-			}
-			else {
-				Debug.LogError("INVALID SPAWN DIRECTION" + i);
-				Debug.Log(roomExitType[i]);
-				Debug.Log(spawnDirections[i]);
+				}
+				else if(roomExitType[i] == "B"){
+					Instantiate(roomB, new Vector2(xDisplacement, yDisplacement), Quaternion.identity);
+					xDisplacement += 10;
+				}
+				else if(roomExitType[i] == "C"){
+					Instantiate(roomC, new Vector2(xDisplacement, yDisplacement), Quaternion.identity);
+					xDisplacement += 10;
+				}
+				else if (roomExitType[i] == "D"){
+					Instantiate(roomD, new Vector2(xDisplacement, yDisplacement), Quaternion.identity);
+					xDisplacement += 10;
+				}
+				else if (roomExitType[i] == "E"){
+					Instantiate(roomE, new Vector2(xDisplacement, yDisplacement), Quaternion.identity);
+					yDisplacement -= 10;
+				}
+				else if (roomExitType[i] == "F"){
+					Instantiate(roomF, new Vector2(xDisplacement, yDisplacement), Quaternion.identity);
+					yDisplacement+= 10;
+				}
+				else if(roomExitType[i] == "Y" && spawnDirections[i-1] == 0) {
+					Instantiate(roomBottomExitYZ, new Vector2(xDisplacement, yDisplacement), Quaternion.identity);
+				}
+				else if (roomExitType[i] == "Y" && spawnDirections[i-1] == 1){
+					Instantiate(roomLeftExitY, new Vector2(xDisplacement, yDisplacement), Quaternion.identity);
+				}
+				else if (roomExitType[i] == "Y" && spawnDirections[i-1] == 2){
+					Instantiate(roomTopExitYZ, new Vector2(xDisplacement, yDisplacement), Quaternion.identity);
+				}
+				else {
+					Debug.LogError("INVALID SPAWN DIRECTION" + i);
+					Debug.Log(roomExitType[i]);
+					Debug.Log(spawnDirections[i]);
+				}
 			}
 		}
 	}
-	void Update () {
-		
-	}
-}
+
+
