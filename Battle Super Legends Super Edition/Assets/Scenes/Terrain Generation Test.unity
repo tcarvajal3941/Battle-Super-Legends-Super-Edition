@@ -113,50 +113,58 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &2041771457
+--- !u!1 &722803906
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2041771459}
-  - component: {fileID: 2041771458}
+  - component: {fileID: 722803908}
+  - component: {fileID: 722803907}
   m_Layer: 0
-  m_Name: MapGenerator
+  m_Name: Map Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2041771458
+--- !u!114 &722803907
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2041771457}
+  m_GameObject: {fileID: 722803906}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21a566f43e427ea4a832dbfacf2e6f2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 035f2ac9a0b707744b94dd677bea00df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundTop: {fileID: 1699922812111120, guid: 6c54cbd9aeb8d7d45984bdd4e4f57eb2, type: 2}
-  spikes: {fileID: 1898095198751836, guid: b2af9bd3250cafa4a9e5d1d76b3f8310, type: 2}
-  bridge: {fileID: 1932041381778742, guid: 349414f840b74e642a553c1d5fd914b7, type: 2}
-  minPlatformSize: 2
-  maxPlatformSize: 12
-  maxHazardSize: 3
-  platforms: 100
-  hazardChance: 0.5
-  bridgeChance: 0.1
---- !u!4 &2041771459
+  spawnDirections: 
+  roomExitType: []
+  roomA: {fileID: 1415610887169994, guid: 0702ed04d4fcca746ae3d65a83b3b457, type: 2}
+  roomB: {fileID: 1851178761541006, guid: c0480598e5c24ef4a97721b188fa8ea9, type: 2}
+  roomC: {fileID: 1829026701295364, guid: 2b50ad8cc95f0b64fa05fe27091d46cd, type: 2}
+  roomD: {fileID: 1840190992579662, guid: 16f4d308db289bc43bee6db79b8326a2, type: 2}
+  roomE: {fileID: 1197278960333648, guid: e3ff434527f59894fb2f664bcafb619e, type: 2}
+  roomF: {fileID: 1844601767521576, guid: 1b35aeb027623c442b8c39a1363a98b2, type: 2}
+  roomLeftExitY: {fileID: 1098985903532000, guid: c46b4a3902ae10f4f9c7c4d9a46d6eb6,
+    type: 2}
+  roomRightExitZ: {fileID: 1637385734931376, guid: 403633552e78e734d8bc4d92e5f128c5,
+    type: 2}
+  roomBottomExitYZ: {fileID: 1689445815194440, guid: 5ac7b38bcbfe29b46b0fdfbc80126951,
+    type: 2}
+  roomTopExitYZ: {fileID: 1181432927292676, guid: 29f2fa7e8075a254ba92acaf61997ddb,
+    type: 2}
+  numberOfRooms: 12
+--- !u!4 &722803908
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2041771457}
+  m_GameObject: {fileID: 722803906}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.449724, y: -0.6736883, z: -0.7017482}
+  m_LocalPosition: {x: 1.2577517, y: -0.53537464, z: -0.76497823}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
