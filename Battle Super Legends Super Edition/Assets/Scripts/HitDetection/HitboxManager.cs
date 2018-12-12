@@ -4,25 +4,31 @@ using UnityEngine;
 
 public class HitboxManager : MonoBehaviour {
     
-    BoxCollider2D hitBox;
-    float         xoffset;
-    Animator      animator;
+    public static CombinedMove Cm;
+    public BoxCollider2D hitBox;
+    GameObject Player;
+    Animator   animator;
+    float      xoffset;
 
     void Start()
     {
         animator = this.GetComponent<Animator>();
-        if (CombinedMove.Cm.moveDirection == 1)
-        {
-            xoffset = .64f;
-        } else if (CombinedMove.Cm.moveDirection == -1) {
-            xoffset = -.64f;
-        }
-        addBoxCollider2D("hitbox", new Vector2(.64f, 1.28f), new Vector2(xoffset, 0), true, false);
+        hitBox.enabled = false;
+
     }
 
     void Update()
     {
+        if (CombinedMove.facingRight)
+        {
+            xoffset = .64f;
+        } else if (!CombinedMove.facingRight) {
+            xoffset = -.64f;
+        }
         
+        hitBox.transform.position = transform.position;
+        hitBox.GetComponent<BoxCollider2D>().size = new Vector2(.64f, .64f);
+        hitBox.GetComponent<BoxCollider2D>().offset = new Vector2(xoffset, 0);
     }
  
     void OnTriggerEnter2D(Collider2D col)
@@ -44,20 +50,5 @@ public class HitboxManager : MonoBehaviour {
     {
         animator.SetInteger("action", 0);
         Debug.Log("Action set to 0");
-    }
-
-    private void addBoxCollider2D(string name, Vector2 size, Vector2 offset, bool boxType, bool enabled)
-    {
-        GameObject childbox = new GameObject(name);
-
-        childbox.transform.position = transform.position;
-        childbox.transform.SetParent(boxType ? transform.GetChild(1) : transform.GetChild(2));
-        
-        childbox.AddComponent<BoxCollider2D>();
-        childbox.GetComponent<BoxCollider2D>().size = size;
-        childbox.GetComponent<BoxCollider2D>().offset = offset;
-        childbox.GetComponent<BoxCollider2D>().enabled = enabled;
-        if (!boxType)
-            childbox.GetComponent<BoxCollider2D>().isTrigger = true;
     }
 }

@@ -3,110 +3,121 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CombinedMove : MonoBehaviour {
+
 	public static CombinedMove Cm;
+	private int   dashSpeedInputDuration = 30;
 
-	Animator   animator;
-	int        action;
-	public int moveDirection;
+	//used by animator
+	Animator           animator;
+	public static bool facingRight;
+	int                action;
+	int                moveDirection;
+	bool               grounded;
 
-	private bool pressedOnce;
-    private float time;
-    private float timerLength;
-
-	bool  steerable;
-	bool  setSteerable;
-	float jumpHeight;
+	//used by movement
+	int   setAirOptions;
+	int   buttonHeld;
 	int   airOptions;
+	float jumpHeight;
 	float gravity;
 	float dashSpeed;
 	float walkspeed;
-	bool  grounded;
-	int   jumpDirection;
 	float setJumpHeight;
-	int   setAirOptions;
+	float speedMultiplier;
+
+	Vector2 prevYPos;
 
 	// Use this for initialization
 	void Start () 
 	{
 		animator = this.GetComponent<Animator>();
 
-		setSteerable = false;
-		setJumpHeight = .3f;
-		setAirOptions = 1;
-		jumpHeight = setJumpHeight;
-		airOptions = setAirOptions;
-		walkspeed = .12f;
-		grounded = true;
-		gravity = .02f;
-		jumpDirection = 0;
-
-		pressedOnce = false;
-        time = 0;
-        timerLength = 0.5f;
+		setJumpHeight = .3f;  //changeable
+		setAirOptions = 1;    //changeable
+		walkspeed     = .12f; //changeable
+		dashSpeed     = 1.5f; //changeable
+		gravity       = .02f; //changeable
+		jumpHeight    = setJumpHeight;
+		airOptions    = setAirOptions;
+		grounded      = true;
+		facingRight   = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		animator.SetBool("grounded", grounded);
-		action = 0;
+		//update animator
 		animator.SetInteger("action", action);
-		moveDirection = 0;
 		animator.SetInteger("moveDirection", moveDirection);
+		animator.SetBool("grounded", grounded);
+		animator.SetBool("facingRight", facingRight);
+		//collect vertical speed
+		animator.SetFloat("vspeed", 
+			(transform.position.y - prevYPos.y) / Time.deltaTime);
+		prevYPos = transform.position;
 
 		//light attack
 		if (Input.GetKeyDown(KeybindingsScript.Kb.lightAttack))
 		{
 			action = 1;
-			animator.SetInteger("action", action);
 			Debug.Log("Light Attack Pressed");
 		}
 		//heavy attack
 		if (Input.GetKeyDown(KeybindingsScript.Kb.mediumAttack))
 		{
 			action = 2;
-			animator.SetInteger("action", action);
 			Debug.Log("Medium Attack Pressed");
 		}
 
 		//move left
 		if (Input.GetKey(KeybindingsScript.Kb.left))
 		{
-			
-			int moveDirection = -1;
+			moveDirection = -1;
+			if (buttonHeld >= dashSpeedInputDuration)
+			{
+				speedMultiplier = dashSpeed*-1;
+			} else if (buttonHeld < dashSpeedInputDuration) {
+				speedMultiplier = -1;
+			}
 			if (grounded)
 			{
-				animator.SetInteger("moveDirection", moveDirection);
-				transform.Translate(walkspeed*-1, 0, 0);
+				facingRight = false;
+				transform.Translate(walkspeed*speedMultiplier, 0, 0);
 			}
 			else if (!grounded)
 			{
-				animator.SetInteger("moveDirection", moveDirection);
 				transform.Translate(walkspeed*-.85f, 0, 0);
 			}
+			buttonHeld++;
 			Debug.Log("Moving Left");
 		}
 
 		//move right
 		if (Input.GetKey(KeybindingsScript.Kb.right))
 		{
-			int moveDirection = 1;
+			moveDirection = 1;
+			if (buttonHeld >= dashSpeedInputDuration)
+			{
+				speedMultiplier = dashSpeed;
+			} else if (buttonHeld < dashSpeedInputDuration) {
+				speedMultiplier = 1;
+			}
 			if (grounded)
 			{
-				animator.SetInteger("moveDirection", moveDirection);
-				transform.Translate(walkspeed, 0, 0);
+				facingRight = true;
+				transform.Translate(walkspeed*speedMultiplier, 0, 0);
 			}
 			else if (!grounded)
 			{
-				animator.SetInteger("moveDirection", moveDirection);
 				transform.Translate(walkspeed*.85f, 0, 0);
 			}
+			buttonHeld++;
 			Debug.Log("Moving Right");
 		}
 		
 		//jump
 		if (Input.GetKeyDown(KeybindingsScript.Kb.jump))
 		{
-			if (grounded)			
+			if (grounded)
 				transform.position = getJump();
 			else if (airOptions > 0)
 			{
@@ -115,40 +126,51 @@ public class CombinedMove : MonoBehaviour {
 			}
 		}
 
+		//resets when keys are released
+		if (Input.GetKeyUp(KeybindingsScript.Kb.left) ||
+			Input.GetKeyUp(KeybindingsScript.Kb.right))
+		{
+			buttonHeld = 0;
+			moveDirection = 0;
+		}
+		if (Input.GetKeyUp(KeybindingsScript.Kb.lightAttack) ||
+			Input.GetKeyUp(KeybindingsScript.Kb.mediumAttack))
+		{
+			action = 0;
+		}
+
 		//activate gravity if airborn
 		if (!grounded && transform.position.y > -.8f)
 		{
-			transform.position = getGravity(jumpDirection, grounded);
-		}
-		if (transform.position.y <= -.8f) {
+			transform.position = getGravity(grounded);
+		} else if (transform.position.y <= -.8f) {
 			grounded = true;
-			animator.SetBool("grounded", grounded);
 			transform.position = new Vector2(transform.position.x, -.8f);
 			jumpHeight = setJumpHeight;
 			airOptions = setAirOptions;
-			jumpDirection = 0;
 		}
 	}
 
+	//jump method, calls gravity
+	public Vector2 getJump()
+	{
+		animator.SetInteger("moveDirection", 2);
+		jumpHeight = setJumpHeight;
+		grounded = false;
+		transform.position = getGravity(grounded);
+
+		Debug.Log("Jumping");
+		return transform.position;
+	}
+
 	//calculate gravity
-	private Vector2 getGravity(int jumpDirection, bool grounded)
+	private Vector2 getGravity(bool grounded)
 	{
 		if (!grounded)
 		{
 			transform.Translate(0, jumpHeight, 0);
 			jumpHeight -= gravity;
 		}
-		return transform.position;
-	}
-
-	public Vector2 getJump()
-	{
-		animator.SetInteger("moveDirection", 2);
-		jumpHeight = setJumpHeight;
-		grounded = false;
-		transform.position = getGravity(jumpDirection, grounded);
-
-		Debug.Log("Jumping");
 		return transform.position;
 	}
 }
