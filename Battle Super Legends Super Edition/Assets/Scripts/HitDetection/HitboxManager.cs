@@ -21,13 +21,13 @@ public class HitboxManager : MonoBehaviour {
     {
         if (CombinedMove.facingRight)
         {
-            xoffset = .64f;
+            xoffset = .25f;
         } else if (!CombinedMove.facingRight) {
-            xoffset = -.64f;
+            xoffset = -.25f;
         }
         
         hitBox.transform.position = transform.position;
-        hitBox.GetComponent<BoxCollider2D>().size = new Vector2(.64f, .64f);
+        hitBox.GetComponent<BoxCollider2D>().size = new Vector2(.25f, .25f);
         hitBox.GetComponent<BoxCollider2D>().offset = new Vector2(xoffset, 0);
     }
  

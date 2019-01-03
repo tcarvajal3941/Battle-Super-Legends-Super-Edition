@@ -5,7 +5,7 @@ using UnityEngine;
 public class CombinedMove : MonoBehaviour {
 
 	public static CombinedMove Cm;
-	private int   dashSpeedInputDuration = 30;
+	private int   dashSpeedInputDuration = 40;
 
 	//used by animator
 	Animator           animator;
@@ -32,11 +32,11 @@ public class CombinedMove : MonoBehaviour {
 	{
 		animator = this.GetComponent<Animator>();
 
-		setJumpHeight = .3f;  //changeable
+		setJumpHeight = .2f;  //changeable
 		setAirOptions = 1;    //changeable
-		walkspeed     = .12f; //changeable
-		dashSpeed     = 1.5f; //changeable
-		gravity       = .02f; //changeable
+		walkspeed     = .06f; //changeable
+		dashSpeed     = 1.75f; //changeable
+		gravity       = .015f; //changeable
 		jumpHeight    = setJumpHeight;
 		airOptions    = setAirOptions;
 		grounded      = true;
