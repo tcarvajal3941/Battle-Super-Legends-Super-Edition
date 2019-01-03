@@ -156,7 +156,6 @@ MonoBehaviour:
     type: 2}
   roomTopExitYZ: {fileID: 1181432927292676, guid: 29f2fa7e8075a254ba92acaf61997ddb,
     type: 2}
-  numberOfRooms: 12
 --- !u!4 &722803908
 Transform:
   m_ObjectHideFlags: 0
