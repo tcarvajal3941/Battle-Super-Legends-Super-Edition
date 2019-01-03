@@ -9,6 +9,7 @@ public class CombinedMove : MonoBehaviour {
 
 	//used by animator
 	Animator           animator;
+	SpriteRenderer     spriteRenderer;
 	public static bool facingRight;
 	int                action;
 	int                moveDirection;
@@ -31,6 +32,7 @@ public class CombinedMove : MonoBehaviour {
 	void Start () 
 	{
 		animator = this.GetComponent<Animator>();
+		spriteRenderer = this.GetComponent<SpriteRenderer>();
 
 		setJumpHeight = .2f;  //changeable
 		setAirOptions = 1;    //changeable
@@ -50,6 +52,8 @@ public class CombinedMove : MonoBehaviour {
 		animator.SetInteger("moveDirection", moveDirection);
 		animator.SetBool("grounded", grounded);
 		animator.SetBool("facingRight", facingRight);
+		if (facingRight){spriteRenderer.flipX = false;}
+		else if (!facingRight){spriteRenderer.flipX = true;}
 		//collect vertical speed
 		animator.SetFloat("vspeed", 
 			(transform.position.y - prevYPos.y) / Time.deltaTime);
