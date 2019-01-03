@@ -29,15 +29,19 @@ public class MapGenerator : MonoBehaviour {
 	
 	private int endRoomNum; 
 
+	private int randomRoomElementNumber;
+
 
 	// Use this for initialization
 	void Start () {
 		
-		numberOfRooms = Random.Range(1000,2000);
+		numberOfRooms = Random.Range(100,200);
 		Debug.Log("Number of Rooms = " + numberOfRooms);
 		GenerateMap();
 		AssignRoomCode();
 		PlaceRooms();
+		PlaceRandomRooms();
+	//	UpdateRoomCode();
 	}
 	
 	private void GenerateMap(){
@@ -96,7 +100,6 @@ public class MapGenerator : MonoBehaviour {
 				roomExitType.Add("F");
 			}
 			else{
-			Debug.Log(i + " Woopsies Dasies ucky fucky we made an oopsie doopsie.");
 		}
 		}
 		
@@ -196,4 +199,82 @@ public class MapGenerator : MonoBehaviour {
 				}
 			}
 		}
+
+		private void PlaceRandomRooms(){
+		randomRoomElementNumber = Random.Range(5, 10);
+		for(int i = randomRoomElementNumber; i <numberOfRooms -1; i += Random.Range(5,10)){
+			bool canGoUp = true;
+			bool canGoRight = true;
+			bool canGoDown = true;
+			bool canGoLeft = true;
+			int currentXPosition = xPosition[i];
+			int currentYPosition = yPosition[i];
+			Debug.Log(i);
+			Debug.Log(currentXPosition + " " + currentYPosition);
+			for(int j = 0; j < xPosition.Count; j++){
+				if(xPosition[j] == currentXPosition && yPosition[j] == currentYPosition + 10){
+					canGoUp = false;
+				}
+				if(xPosition[j] == currentXPosition + 10 && yPosition[j] == currentYPosition){
+					canGoRight = false;
+				}
+				if(xPosition[j] == currentXPosition && yPosition[j] == currentYPosition - 10){
+					canGoDown = false;
+				}
+				if(xPosition[j] == currentXPosition - 10 && yPosition[j] == currentYPosition){
+					canGoLeft = false;
+				}
+				if(!canGoDown && !canGoUp && !canGoLeft && !canGoRight){
+				break;
+				}
+			}
+			
+			// 0 is up
+			// 1 is right
+			// 2 is down
+			// 3 is left
+			int randomDirection = Random.Range(0,4);
+			while(true){
+				if(randomDirection == 0 && canGoUp == false){
+					randomDirection = Random.Range(0,4);
+				}
+				else if(randomDirection == 1 && canGoRight == false){
+					randomDirection = Random.Range(0,4);
+				}
+				else if(randomDirection == 2 && canGoDown == false){
+					randomDirection = Random.Range(0,4);
+				}
+				else if(randomDirection == 3 && canGoLeft == false){
+					randomDirection = Random.Range(0,4);
+				}
+				else{					
+					break;
+				}
+				if(randomDirection == 0 && canGoUp) {
+					Instantiate(roomA, new Vector2(currentXPosition, currentYPosition + 10), Quaternion.identity);
+					xPosition.Add(currentXPosition);
+					yPosition.Add(currentYPosition + 10);
+					roomExitType.Add("A");				
+				}
+				else if(randomDirection == 2 && canGoDown) {
+					Instantiate(roomA, new Vector2(currentXPosition, currentYPosition - 10), Quaternion.identity);
+					xPosition.Add(currentXPosition);
+					yPosition.Add(currentYPosition - 10);	
+					roomExitType.Add("A");				
+				}
+				else if(randomDirection == 1 && canGoRight) {
+					Instantiate(roomC, new Vector2(currentXPosition + 10, currentYPosition), Quaternion.identity);
+					xPosition.Add(currentXPosition + 10);
+					yPosition.Add(currentYPosition);
+					roomExitType.Add("C");
+				}
+				else if(randomDirection == 3 && canGoLeft) {
+					Instantiate(roomC, new Vector2(currentXPosition - 10, currentYPosition), Quaternion.identity);
+					xPosition.Add(currentXPosition - 10);
+					yPosition.Add(currentYPosition);
+					roomExitType.Add("C");
+				}
+			}
+		}
 	}
+}
