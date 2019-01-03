@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: TestController
+  m_Name: MonkController
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: grounded
@@ -307,7 +307,7 @@ AnimatorStateTransition:
   m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 0
-  m_HasExitTime: 1
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -647,7 +647,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e8fd6fd76df7ae348ad21e07ed71aaa5, type: 2}
+  m_Motion: {fileID: 7400000, guid: 0e02fc961738bf741b302b816a0a577c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -673,7 +673,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: caf266fbcd2f7ba43a1e4f108cf01781, type: 2}
+  m_Motion: {fileID: 7400000, guid: 0e02fc961738bf741b302b816a0a577c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -751,7 +751,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e8fd6fd76df7ae348ad21e07ed71aaa5, type: 2}
+  m_Motion: {fileID: 7400000, guid: 063ed421d6d0ab64ab3c91fc51227e42, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -886,7 +886,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: caf266fbcd2f7ba43a1e4f108cf01781, type: 2}
+  m_Motion: {fileID: 7400000, guid: 063ed421d6d0ab64ab3c91fc51227e42, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
